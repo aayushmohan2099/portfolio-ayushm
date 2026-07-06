@@ -2,8 +2,8 @@
 import React, { useState, useEffect } from "react";
 import SplashScreen from "./components/SplashScreen";
 import Title from "./components/Title/Title";
-// import CursorGlow from "./ComponentStyles/App/CursorGlow";
 import { SmoothCursor } from "@/components/ui/smooth-cursor";
+import { ScrollBlurTransition } from "@/components/ui/oc/ScrollBlurTransition";
 
 function App() {
   const [showSplash, setShowSplash] = useState(true);
@@ -18,32 +18,37 @@ function App() {
   }, [showSplash]);
 
   return (
-    // REMOVED 'cursor-normal' from the className here
-    <div className="bg-black min-h-screen no-scrollbar text-white font-sans">
-      {/* 
-        ADDED the SmoothCursor component at the top level 
-        so it replaces the cursor globally. 
-      */}
+    <div className="bg-background min-h-screen no-scrollbar text-foreground font-sans">
+      {/* Global Smooth Cursor */}
       <SmoothCursor />
 
       {showSplash && <SplashScreen onComplete={() => setShowSplash(false)} />}
 
-      {/* 
-        We wrap the main content in a motion.div to fade it in 
-        cleanly right as the splash screen disappears.
-      */}
       {!showSplash && (
         <main>
-          <div className="title-bg-anim">
-            <Title />
+          {/* Section 1: The Title Area */}
+          <ScrollBlurTransition delay={0.1}>
+            <div className="title-bg-anim">
+              <Title />
+            </div>
+          </ScrollBlurTransition>
 
-            {/* Temporary placeholder for scrolling to see the parallax effect */}
-            <div className="h-screen w-full flex items-center justify-center border-t border-gray-900">
-              <h2 className="text-gray-700 text-2xl">
+          {/* Section 2: Experience Placeholder */}
+          {/* We add a slight delay so it staggers in naturally if you scroll fast */}
+          <ScrollBlurTransition delay={0.2}>
+            <div className="h-screen w-full flex items-center justify-center border-t border-border">
+              <h2 className="text-muted-foreground text-2xl font-medium tracking-tight">
                 Experience Section Coming Next...
               </h2>
             </div>
-          </div>
+          </ScrollBlurTransition>
+
+          {/* 
+            In the future, simply wrap any new sections you build like this:
+            <ScrollBlurTransition>
+               <ProjectsSection />
+            </ScrollBlurTransition>
+          */}
         </main>
       )}
     </div>
