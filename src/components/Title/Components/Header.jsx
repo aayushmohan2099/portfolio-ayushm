@@ -4,13 +4,13 @@ import Middle from "./HeaderComp/Middle";
 import Right from "./HeaderComp/Right";
 
 const Header = () => {
-    return (
-        <div className="h-full w-full grid grid-cols-[1fr_4fr_1fr]">
-            <Left />
-            <Middle />
-            <Right />
-        </div>
-    );
+  return (
+    <div className="relative z-50 min-h-[60px] md:h-full w-full flex flex-col md:grid md:grid-cols-[1fr_5fr_1fr] lg:grid-cols-[1fr_4fr_1fr] items-center justify-center gap-4 md:gap-0 overflow-visible pointer-events-auto">
+      <Left />
+      <Middle />
+      <Right />
+    </div>
+  );
 };
 
 export default Header;

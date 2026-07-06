@@ -1,6 +1,11 @@
 // src/components/Title/MainPanel.jsx
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { OrbitingCircles } from "@/components/ui/orbiting-circles";
+import { useTheme } from "next-themes";
+
+// Import the center logos based on your project structure
+import logoWhite from "@/assets/mid/mid_logo_w.png";
+import logoBlack from "@/assets/mid/mid_logo_b.png";
 
 const slugs = [
   "typescript",
@@ -36,7 +41,6 @@ const slugs = [
 ];
 
 // EASY CONFIGURATION: Adjust icon sizes layer by layer here.
-// These are currently scaled up ~40% from your previous settings.
 const ICON_SIZES = {
   layer1: 34, // Inner ring
   layer2: 50, // Middle-inner ring
@@ -45,6 +49,9 @@ const ICON_SIZES = {
 };
 
 const MainPanel = () => {
+  const { theme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
   // FIX 1: Fixed URL mapping structure to pull native vector icons without 404 response errors
   const images = slugs.map((slug) => `https://cdn.simpleicons.org/${slug}`);
 
@@ -53,6 +60,15 @@ const MainPanel = () => {
   const layer2 = images.slice(5, 12); // 7 icons (Middle-inner ring)
   const layer3 = images.slice(12, 21); // 9 icons (Middle-outer ring)
   const layer4 = images.slice(21, 30); // 9 icons (Outer ring)
+
+  // Wait until mounted to render theme-dependent UI to avoid SSR hydration errors
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Determine the exact current theme (handling the "system" default edge case)
+  const currentTheme = theme === "system" ? resolvedTheme : theme;
+  const currentLogo = currentTheme === "dark" ? logoWhite : logoBlack;
 
   return (
     <div className="relative h-full min-h-[700px] w-full flex items-center justify-center overflow-visible">
@@ -71,6 +87,18 @@ const MainPanel = () => {
             }
         }
       `}</style>
+
+      {/* Center Theme-Aware Logo */}
+      {mounted && (
+        <div className="absolute z-10 flex items-center justify-center pointer-events-none">
+          <img
+            src={currentLogo}
+            alt="Core Framework Logo"
+            className="w-32 h-32 md:w-40 md:h-40 rounded-full object-contain transition-opacity duration-300"
+            draggable={false}
+          />
+        </div>
+      )}
 
       {/* Layer 1: Inner Orbit Configuration */}
       <OrbitingCircles radius={150} duration={25} iconSize={ICON_SIZES.layer1}>
