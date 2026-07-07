@@ -35,6 +35,34 @@
     @apply border-border;
   }
 
+  /* Prevent selecting anything */
+  *,
+  *::before,
+  *::after {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+
+    -webkit-touch-callout: none;
+  }
+
+  /* Prevent dragging images */
+  img,
+  svg,
+  video,
+  canvas {
+    -webkit-user-drag: none;
+    user-drag: none;
+
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  /* Prevent tap highlight on mobile */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
   /* -----------------------------------------
      MAGIC UI SMOOTH CURSOR OVERRIDES
   ----------------------------------------- */

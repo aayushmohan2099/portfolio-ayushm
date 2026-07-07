@@ -6,18 +6,18 @@ import Header from "./Components/Header";
 import LeftPanel from "./Components/LeftPanel";
 import MainPanel from "./Components/MainPanel";
 import RightPanel from "./Components/RightPanel";
-import Footer from "./Components/Footer";
 
 // ==========================================
 // CONFIGURATION: TEXT ANIMATION DELAYS
 // Adjust these values (in seconds) to control
 // exactly when the left and right texts appear.
 // ==========================================
+const MAIN_PANEL_DELAY = 0.5; // Starts the central ripple effect first
 const LEFT_TEXT_DELAY = 1.0;
 const RIGHT_TEXT_DELAY = 1.5;
 // ==========================================
 
-const Title = () => {
+const Title = ({ shouldStartMusic }) => {
   const ref = useRef(null);
 
   const { scrollYProgress } = useScroll({
@@ -43,7 +43,7 @@ const Title = () => {
         <div className="h-full w-full flex flex-col md:grid md:grid-cols-[1fr_3fr_1fr] md:grid-rows-[60px_1fr_60px] gap-2 pointer-events-auto">
           {/* Header (1) */}
           <div className="w-full md:col-span-3 order-1 md:order-none z-50">
-            <Header />
+            <Header shouldStartMusic={shouldStartMusic} />
           </div>
 
           {/* Left (2) */}
@@ -58,7 +58,7 @@ const Title = () => {
 
           {/* Main (3) - Scaled down on mobile to prevent massive overflow, placed below text */}
           <div className="w-full order-4 md:order-none z-10 flex items-center justify-center -my-24 md:my-0 scale-[0.6] sm:scale-75 md:scale-100 origin-top md:origin-center">
-            <MainPanel />
+            <MainPanel animDelay={MAIN_PANEL_DELAY} />
           </div>
 
           {/* Right (4) - Reordered on mobile to appear right after the Left text */}
@@ -69,11 +69,6 @@ const Title = () => {
               scale={scale}
               animDelay={RIGHT_TEXT_DELAY}
             />
-          </div>
-
-          {/* Footer (5) */}
-          <div className="w-full md:col-span-3 order-5 md:order-none mt-auto md:mt-0">
-            <Footer />
           </div>
         </div>
       </section>

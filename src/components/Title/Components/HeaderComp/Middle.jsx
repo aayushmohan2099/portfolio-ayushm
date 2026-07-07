@@ -1,13 +1,11 @@
 // src/components/Title/HeaderComp/Middle.jsx
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import LightSign from "@/assets/sign_w.png";
-import DarkSign from "@/assets/sign_b.png";
 import { useTheme } from "next-themes";
+import { NeonFont } from "@/components/ui/oc/NeonFont";
 
 // ==========================================
 // CONFIGURATION: HEADER NAVIGATION SECTIONS
-// Add, remove, or modify your navigation links here.
 // ==========================================
 const NAV_SECTIONS = [
   { id: "home", label: "Home" },
@@ -17,32 +15,17 @@ const NAV_SECTIONS = [
   { id: "experience", label: "Experience" },
   { id: "contact", label: "Contact" },
 ];
-// ==========================================
 
 const Middle = () => {
   const { theme, resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
   const [activeSection, setActiveSection] = useState("home");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const currentTheme = theme === "system" ? resolvedTheme : theme;
-  const currentLogo = currentTheme === "dark" ? LightSign : DarkSign;
-
   return (
     <div className="relative h-full w-full flex items-center justify-center px-2 md:px-4 overflow-visible">
-      {/* 
-        The Floating Nav Pill 
-        Note: overflow is visible so the logo can break out of the top/bottom bounds 
-      */}
       <div className="relative flex h-16 w-full max-w-5xl items-center justify-between rounded-full border border-border/40 bg-background/80 px-4 shadow-[0_8px_32px_rgba(0,0,0,0.1)] backdrop-blur-3xl dark:border-white/10 dark:bg-black/60 dark:shadow-[0_8px_32px_rgba(255,255,255,0.04)]">
         {/* --- LEFT AREA: Status Indicator & Logo --- */}
         <div className="flex items-center gap-6">
-          {/* Status Indicator (Hidden on mobile to save space) */}
           <div className="hidden lg:flex items-center gap-2 pl-2">
             <span className="relative flex h-2.5 w-2.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
@@ -54,22 +37,26 @@ const Middle = () => {
           </div>
 
           <div className="relative flex h-full items-center z-20">
-            <img
-              src={currentLogo}
-              alt="Ayush Signature"
-              className="
-                h-20
-                w-auto
-                object-contain
-                select-none
-                pointer-events-none
-                brightness-110
-                "
-              draggable={false}
-            />
+            {/* CRITICAL: The DESTINATION Layout ID. 
+                Removed the 'mounted' check so it exists immediately upon App load. */}
+            <motion.button
+              layoutId="brand-logo"
+              type="button"
+              onClick={() => window.location.reload()}
+              className="flex items-center justify-center z-50 relative cursor-pointer outline-none"
+              transition={{
+                type: "spring",
+                mass: 1.2,
+                stiffness: 100,
+                damping: 20,
+              }}
+              whileTap={{ scale: 0.96 }}
+              title="Reload page"
+            >
+              <NeonFont text="ayushmohan" fontSize="2rem" blur="20px" />
+            </motion.button>
 
-            {/* Spacer */}
-            <div className="hidden md:block w-16" />
+            <div className="hidden md:block w-4" />
           </div>
         </div>
 
@@ -86,20 +73,16 @@ const Middle = () => {
               }`}
             >
               <span className="relative z-10">{section.label}</span>
-
-              {/* Fluid Active Indicator Line & Glow */}
               {activeSection === section.id && (
                 <>
                   <motion.div
                     layoutId="active-nav-line"
                     className="absolute bottom-1 left-1/4 right-1/4 h-[2px] rounded-t-full bg-blue-500 shadow-[0_0_12px_rgba(59,130,246,1)]"
-                    initial={false}
                     transition={{ type: "spring", stiffness: 400, damping: 35 }}
                   />
                   <motion.div
                     layoutId="active-nav-glow"
                     className="absolute inset-0 -z-10 rounded-full bg-blue-500/10 blur-md"
-                    initial={false}
                     transition={{ type: "spring", stiffness: 400, damping: 35 }}
                   />
                 </>
@@ -110,7 +93,6 @@ const Middle = () => {
 
         {/* --- RIGHT AREA: Call to Action & Mobile Toggle --- */}
         <div className="flex items-center gap-3">
-          {/* Let's Connect Button */}
           <button
             className="group relative inline-flex w-fit shrink-0 items-center gap-2 overflow-hidden whitespace-nowrap rounded-full border border-blue-500/30 bg-blue-500/10 px-5 py-2 text-sm font-semibold text-foreground transition-all duration-300 hover:border-blue-500/60 hover:bg-blue-500/20 hover:shadow-[0_0_20px_rgba(59,130,246,0.3)]"
             onClick={() =>
@@ -137,15 +119,12 @@ const Middle = () => {
               <line x1="7" y1="17" x2="17" y2="7"></line>
               <polyline points="7 7 17 7 17 17"></polyline>
             </svg>
-            {/* Hover shine sweep effect */}
             <div className="absolute inset-0 -z-10 -translate-x-[100%] bg-gradient-to-r from-transparent via-blue-400/20 to-transparent transition-transform duration-500 group-hover:translate-x-[100%]"></div>
           </button>
 
-          {/* Mobile Hamburger Menu Toggle */}
           <button
             className="flex md:hidden flex-col justify-center gap-1.5 p-2 text-foreground"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle Menu"
           >
             <span
               className={`h-0.5 w-5 bg-current transition-transform duration-300 ${isMobileMenuOpen ? "translate-y-2 rotate-45" : ""}`}
@@ -177,11 +156,7 @@ const Middle = () => {
                   setActiveSection(section.id);
                   setIsMobileMenuOpen(false);
                 }}
-                className={`flex w-full items-center rounded-xl px-4 py-3 text-left font-medium transition-colors ${
-                  activeSection === section.id
-                    ? "bg-blue-500/10 text-blue-500"
-                    : "text-foreground hover:bg-muted"
-                }`}
+                className={`flex w-full items-center rounded-xl px-4 py-3 text-left font-medium transition-colors ${activeSection === section.id ? "bg-blue-500/10 text-blue-500" : "text-foreground hover:bg-muted"}`}
               >
                 {section.label}
               </button>

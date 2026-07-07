@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { OrbitingCircles } from "@/components/ui/orbiting-circles";
 import { useTheme } from "next-themes";
+import { motion } from "framer-motion"; // Added framer-motion
 
 // Import the center logos based on your project structure
 import logoWhite from "@/assets/mid/mid_logo_w.png";
@@ -48,7 +49,7 @@ const ICON_SIZES = {
   layer4: 70, // Outer ring
 };
 
-const MainPanel = () => {
+const MainPanel = ({ animDelay = 0.5 }) => {
   const { theme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -88,96 +89,161 @@ const MainPanel = () => {
         }
       `}</style>
 
-      {/* Center Theme-Aware Logo */}
+      {/* Center Theme-Aware Logo - Mounts First */}
       {mounted && (
-        <div className="absolute z-10 flex items-center justify-center pointer-events-none">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.3, filter: "blur(10px)" }}
+          animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+          transition={{
+            delay: animDelay,
+            duration: 0.8,
+            type: "spring",
+            bounce: 0.4,
+          }}
+          className="absolute z-10 flex items-center justify-center pointer-events-none"
+        >
           <img
             src={currentLogo}
             alt="Core Framework Logo"
             className="w-32 h-32 md:w-40 md:h-40 rounded-full object-contain transition-opacity duration-300"
             draggable={false}
           />
-        </div>
+        </motion.div>
       )}
 
-      {/* Layer 1: Inner Orbit Configuration */}
-      <OrbitingCircles radius={150} duration={25} iconSize={ICON_SIZES.layer1}>
-        {layer1.map((url, idx) => (
-          <img
-            key={`layer1-${idx}`}
-            src={url}
-            alt="tech-icon"
-            className="object-contain"
-            // FIX 3: Bound directly to the layer config to guarantee correct rendering
-            style={{
-              width: `${ICON_SIZES.layer1}px`,
-              height: `${ICON_SIZES.layer1}px`,
-            }}
-            draggable={false}
-          />
-        ))}
-      </OrbitingCircles>
-
-      {/* Layer 2: Middle-Inner Orbit Configuration (Counter-Clockwise) */}
-      <OrbitingCircles
-        radius={210}
-        duration={30}
-        reverse
-        iconSize={ICON_SIZES.layer2}
+      {/* Layer 1: Inner Orbit Configuration - Mounts Second */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{
+          delay: animDelay + 0.2,
+          duration: 0.8,
+          type: "spring",
+          bounce: 0.3,
+        }}
+        className="absolute inset-0 flex items-center justify-center"
       >
-        {layer2.map((url, idx) => (
-          <img
-            key={`layer2-${idx}`}
-            src={url}
-            alt="tech-icon"
-            className="object-contain"
-            style={{
-              width: `${ICON_SIZES.layer2}px`,
-              height: `${ICON_SIZES.layer2}px`,
-            }}
-            draggable={false}
-          />
-        ))}
-      </OrbitingCircles>
+        <OrbitingCircles
+          radius={150}
+          duration={25}
+          iconSize={ICON_SIZES.layer1}
+        >
+          {layer1.map((url, idx) => (
+            <img
+              key={`layer1-${idx}`}
+              src={url}
+              alt="tech-icon"
+              className="object-contain"
+              style={{
+                width: `${ICON_SIZES.layer1}px`,
+                height: `${ICON_SIZES.layer1}px`,
+              }}
+              draggable={false}
+            />
+          ))}
+        </OrbitingCircles>
+      </motion.div>
 
-      {/* Layer 3: Middle-Outer Orbit Configuration */}
-      <OrbitingCircles radius={350} duration={40} iconSize={ICON_SIZES.layer3}>
-        {layer3.map((url, idx) => (
-          <img
-            key={`layer3-${idx}`}
-            src={url}
-            alt="tech-icon"
-            className="object-contain"
-            style={{
-              width: `${ICON_SIZES.layer3}px`,
-              height: `${ICON_SIZES.layer3}px`,
-            }}
-            draggable={false}
-          />
-        ))}
-      </OrbitingCircles>
-
-      {/* Layer 4: Outer Orbit Configuration (Counter-Clockwise) */}
-      <OrbitingCircles
-        radius={540}
-        duration={50}
-        reverse
-        iconSize={ICON_SIZES.layer4}
+      {/* Layer 2: Middle-Inner Orbit Configuration (Counter-Clockwise) - Mounts Third */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{
+          delay: animDelay + 0.4,
+          duration: 0.8,
+          type: "spring",
+          bounce: 0.3,
+        }}
+        className="absolute inset-0 flex items-center justify-center"
       >
-        {layer4.map((url, idx) => (
-          <img
-            key={`layer4-${idx}`}
-            src={url}
-            alt="tech-icon"
-            className="object-contain"
-            style={{
-              width: `${ICON_SIZES.layer4}px`,
-              height: `${ICON_SIZES.layer4}px`,
-            }}
-            draggable={false}
-          />
-        ))}
-      </OrbitingCircles>
+        <OrbitingCircles
+          radius={210}
+          duration={30}
+          reverse
+          iconSize={ICON_SIZES.layer2}
+        >
+          {layer2.map((url, idx) => (
+            <img
+              key={`layer2-${idx}`}
+              src={url}
+              alt="tech-icon"
+              className="object-contain"
+              style={{
+                width: `${ICON_SIZES.layer2}px`,
+                height: `${ICON_SIZES.layer2}px`,
+              }}
+              draggable={false}
+            />
+          ))}
+        </OrbitingCircles>
+      </motion.div>
+
+      {/* Layer 3: Middle-Outer Orbit Configuration - Mounts Fourth */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{
+          delay: animDelay + 0.6,
+          duration: 0.8,
+          type: "spring",
+          bounce: 0.3,
+        }}
+        className="absolute inset-0 flex items-center justify-center"
+      >
+        <OrbitingCircles
+          radius={350}
+          duration={40}
+          iconSize={ICON_SIZES.layer3}
+        >
+          {layer3.map((url, idx) => (
+            <img
+              key={`layer3-${idx}`}
+              src={url}
+              alt="tech-icon"
+              className="object-contain"
+              style={{
+                width: `${ICON_SIZES.layer3}px`,
+                height: `${ICON_SIZES.layer3}px`,
+              }}
+              draggable={false}
+            />
+          ))}
+        </OrbitingCircles>
+      </motion.div>
+
+      {/* Layer 4: Outer Orbit Configuration (Counter-Clockwise) - Mounts Fifth */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{
+          delay: animDelay + 0.8,
+          duration: 0.8,
+          type: "spring",
+          bounce: 0.3,
+        }}
+        className="absolute inset-0 flex items-center justify-center"
+      >
+        <OrbitingCircles
+          radius={540}
+          duration={50}
+          reverse
+          iconSize={ICON_SIZES.layer4}
+        >
+          {layer4.map((url, idx) => (
+            <img
+              key={`layer4-${idx}`}
+              src={url}
+              alt="tech-icon"
+              className="object-contain"
+              style={{
+                width: `${ICON_SIZES.layer4}px`,
+                height: `${ICON_SIZES.layer4}px`,
+              }}
+              draggable={false}
+            />
+          ))}
+        </OrbitingCircles>
+      </motion.div>
     </div>
   );
 };

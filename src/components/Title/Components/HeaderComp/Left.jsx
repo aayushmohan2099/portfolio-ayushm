@@ -28,7 +28,7 @@ const TRACKS = [
   },
 ];
 
-const Left = () => {
+const Left = ({ shouldStartMusic }) => {
   const audioRef = useRef(null);
 
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
@@ -41,21 +41,21 @@ const Left = () => {
 
   const currentTrack = TRACKS[currentTrackIndex];
 
-  // Initialize Volume and Attempt Autoplay on mount
+  // Initialize Volume on mount
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.volume = DEFAULT_VOLUME;
-      audioRef.current
-        .play()
-        .then(() => setIsPlaying(true))
-        .catch((err) => {
-          console.warn(
-            "Autoplay blocked by browser. User interaction required.",
-          );
-          setIsPlaying(false);
-        });
     }
   }, []);
+
+  useEffect(() => {
+    if (!shouldStartMusic || !audioRef.current) return;
+
+    audioRef.current
+      .play()
+      .then(() => setIsPlaying(true))
+      .catch(console.error);
+  }, [shouldStartMusic]);
 
   const handleEnded = () => {
     handleNext();
@@ -123,10 +123,10 @@ const Left = () => {
 
   return (
     <div className="h-full w-full flex items-center justify-start pl-2 md:pl-4 mt-2">
+      {/* Removed autoPlay. Handled strictly by the Enter button interaction */}
       <audio
         ref={audioRef}
         src={currentTrack.src}
-        autoPlay
         onEnded={handleEnded}
         onTimeUpdate={handleTimeUpdate}
         onLoadedMetadata={handleTimeUpdate}
@@ -192,8 +192,7 @@ const Left = () => {
           </div>
         </button>
 
-        {/* 
-          EXPANDING CARD WIDGET
+        {/* EXPANDING CARD WIDGET
           Mobile: Fixed to the top, taking max width over everything.
           Desktop: Absolute positioned directly under the trigger button.
         */}
@@ -342,7 +341,7 @@ const Left = () => {
                   d="M12 2.4a9.6 9.6 0 1 0 0 19.2 9.6 9.6 0 0 0 0-19.2ZM9.6 7.848v8.304a1.2 1.2 0 0 0 1.838.98l6.326-4.152a1.2 1.2 0 0 0 0-1.96l-6.326-4.152A1.2 1.2 0 0 0 9.6 7.848Z"
                 ></path>
               ) : (
-                // Pause Icon (Original snippet path)
+                // Pause Icon
                 <path
                   clipRule="evenodd"
                   d="M21.6 12a9.6 9.6 0 1 1-19.2 0 9.6 9.6 0 0 1 19.2 0ZM8.4 9.6a1.2 1.2 0 1 1 2.4 0v4.8a1.2 1.2 0 1 1-2.4 0V9.6Zm6-1.2a1.2 1.2 0 0 0-1.2 1.2v4.8a1.2 1.2 0 1 0 2.4 0V9.6a1.2 1.2 0 0 0-1.2-1.2Z"
@@ -366,22 +365,6 @@ const Left = () => {
                 d="M12 21.6a9.6 9.6 0 1 0 0-19.2 9.6 9.6 0 0 0 0 19.2Zm4.448-10.448-3.6-3.6a1.2 1.2 0 0 0-1.696 1.696l1.551 1.552H8.4a1.2 1.2 0 1 0 0 2.4h4.303l-1.551 1.552a1.2 1.2 0 1 0 1.696 1.696l3.6-3.6a1.2 1.2 0 0 0 0-1.696Z"
                 fillRule="evenodd"
               ></path>
-            </svg>
-
-            {/* Heart Icon */}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              strokeWidth="2"
-              strokeLinejoin="round"
-              strokeLinecap="round"
-              stroke="currentColor"
-              fill="none"
-              height="20"
-              width="24"
-              className="cursor-pointer transition-colors hover:text-red-500 hover:fill-red-500/20"
-            >
-              <path d="M3.343 7.778a4.5 4.5 0 0 1 7.339-1.46L12 7.636l1.318-1.318a4.5 4.5 0 1 1 6.364 6.364L12 20.364l-7.682-7.682a4.501 4.501 0 0 1-.975-4.904Z"></path>
             </svg>
           </div>
 
