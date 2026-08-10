@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { TextAnimate } from "@/components/ui/text-animate";
 import { ParaTypography } from "@/components/ui/oc/ParaTypography";
 import { useTheme } from "next-themes";
-import { ArrowRightCircle } from "lucide-react"; // Imported smooth icon
+import { ArrowRightCircle } from "lucide-react";
 
 const SplashScreen = ({ onComplete }) => {
   const [showEnterButton, setShowEnterButton] = useState(false);
@@ -13,30 +13,17 @@ const SplashScreen = ({ onComplete }) => {
   const { theme, resolvedTheme } = useTheme();
   const isDark = (theme === "system" ? resolvedTheme : theme) === "dark";
 
+  // Simply wait for the ParaTypography animation to finish before showing the button
   useEffect(() => {
-    const link = document.createElement("link");
-    link.rel = "preconnect";
-    link.href = "https://cdn.simpleicons.org";
-    document.head.appendChild(link);
-
-    const audioPreload = new Audio();
-    audioPreload.src = "/music/01.mp3";
-    audioPreload.preload = "auto";
-
-    // Precisely timed to match the Slide-In + Fill animation phases from ParaTypography
-    const loadingTimer = setTimeout(() => {
+    const timer = setTimeout(() => {
       setShowEnterButton(true);
     }, 2800);
 
-    return () => {
-      document.head.removeChild(link);
-      clearTimeout(loadingTimer);
-    };
+    return () => clearTimeout(timer);
   }, []);
 
   const handleEnterClick = () => {
     window.dispatchEvent(new Event("app-entered"));
-    // CRITICAL: Fire immediately! App.jsx will handle the AnimatePresence fade out.
     onComplete();
   };
 
@@ -45,19 +32,19 @@ const SplashScreen = ({ onComplete }) => {
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }} // Smooth fade out when App.jsx unmounts it
       transition={{ duration: 0.8, ease: "easeInOut" }}
-      className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-background overflow-hidden pointer-events-auto px-4"
+      className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-transparent overflow-hidden pointer-events-auto px-4"
     >
       {/* Wrapper ensures text stays centered and prevents overlap natively via Flexbox */}
       <div className="relative z-10 w-full flex justify-center pointer-events-none mb-10">
-        {/* CRITICAL: The ORIGIN Layout ID. 
-            When the splash screen closes, Framer Motion will beautifully crossfade and shrink 
-            this massive typography block into the small logo in the Header! 
-        */}
-        <motion.div layoutId="brand-logo" className="w-full">
+        <motion.div
+          layoutId="brand-logo"
+          className="w-full flex items-center justify-center min-h-[30vh]"
+        >
+          {/* Renders immediately so the animation is visible from frame 1 */}
           <ParaTypography
             fontFamily="'Vibur', cursive"
             lineGap="1.2"
-            strokeWidth="0.3px"
+            strokeWidth="1px"
             lines={[
               {
                 text: "HELLO.",
@@ -95,7 +82,6 @@ const SplashScreen = ({ onComplete }) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
               onClick={handleEnterClick}
-              // Group class added to control the hover cascade. Elegant smooth font styling applied.
               className="group relative z-20 flex items-center justify-center overflow-hidden px-8 py-3 text-foreground font-sans font-light tracking-[0.25em] uppercase text-xs md:text-sm cursor-pointer pointer-events-auto bg-transparent border-none outline-none"
             >
               {/* Invisible placeholder to maintain the button's exact width during absolute transitions */}

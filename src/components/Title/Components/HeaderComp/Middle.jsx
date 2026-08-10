@@ -42,7 +42,9 @@ const Middle = () => {
             <motion.button
               layoutId="brand-logo"
               type="button"
-              onClick={() => window.location.reload()}
+              onClick={() =>
+                window.dispatchEvent(new Event("trigger-return-splash"))
+              }
               className="flex items-center justify-center z-50 relative cursor-pointer outline-none"
               transition={{
                 type: "spring",

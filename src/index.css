@@ -1,7 +1,4 @@
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
 @import "@fontsource-variable/geist";
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -42,7 +39,6 @@
     -webkit-user-select: none;
     -moz-user-select: none;
     user-select: none;
-
     -webkit-touch-callout: none;
   }
 
@@ -53,7 +49,6 @@
   canvas {
     -webkit-user-drag: none;
     user-drag: none;
-
     -webkit-user-select: none;
     user-select: none;
   }
@@ -81,12 +76,6 @@
   /* -----------------------------------------
      THEME VARIABLES
   ----------------------------------------- */
-  .theme {
-    --font-heading: var(--font-sans);
-    --font-sans: 'Geist Variable', sans-serif;
-    --animate-orbit: orbit calc(var(--duration)*1s) linear infinite;
-  }
-
   :root {
     --background: oklch(100% 0 0);
     --foreground: oklch(0.145 0 0);
@@ -162,17 +151,6 @@
 
   html {
     @apply font-sans;
-  }
-}
-
-@theme inline {
-  @keyframes orbit {
-  0% {
-    transform: rotate(calc(var(--angle) * 1deg)) translateY(calc(var(--radius) * 1px)) rotate(calc(var(--angle) * -1deg));
-    }
-  100% {
-    transform: rotate(calc(var(--angle) * 1deg + 360deg)) translateY(calc(var(--radius) * 1px)) rotate(calc((var(--angle) * -1deg) - 360deg));
-    }
   }
 }
 
