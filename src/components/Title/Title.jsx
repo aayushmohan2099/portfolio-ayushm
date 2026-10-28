@@ -1,8 +1,7 @@
-// src/components/Title.jsx
+// src/components/Title/Title.jsx
 import React, { useRef } from "react";
 import { useScroll, useTransform } from "framer-motion";
 
-import Header from "./Components/Header";
 import LeftPanel from "./Components/LeftPanel";
 import MainPanel from "./Components/MainPanel";
 import RightPanel from "./Components/RightPanel";
@@ -30,8 +29,8 @@ const Title = ({ shouldStartMusic }) => {
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.9]);
 
   return (
-    // Changed to min-h-screen for mobile scrolling, keeping overflow-hidden on desktop
-    <div className="title-bg-anim relative w-full min-h-screen md:h-screen overflow-x-hidden md:overflow-hidden">
+    // touch-auto unlocks vertical scrolling on mobile devices while keeping desktop locked to 100vh
+    <div className="title-bg-anim relative w-full min-h-screen md:h-screen overflow-x-hidden md:overflow-hidden touch-auto">
       {/* Blur layer */}
       <div className="absolute inset-0 z-[2] backdrop-blur-[1px] pointer-events-none" />
 
@@ -41,10 +40,8 @@ const Title = ({ shouldStartMusic }) => {
       >
         {/* Switched from strict grid to a responsive flex-col that snaps to grid on medium screens */}
         <div className="h-full w-full flex flex-col md:grid md:grid-cols-[1fr_3fr_1fr] md:grid-rows-[60px_1fr_60px] gap-2 pointer-events-auto">
-          {/* Header (1) */}
-          <div className="w-full md:col-span-3 order-1 md:order-none z-50">
-            <Header shouldStartMusic={shouldStartMusic} />
-          </div>
+          {/* Header Spacer (1) - Reserves space for the global fixed Header in App.jsx */}
+          <div className="w-full md:col-span-3 order-1 md:order-none h-36 sm:h-40 md:h-[60px] pointer-events-none" />
 
           {/* Left (2) */}
           <div className="w-full order-2 md:order-none z-30 pt-8 md:pt-0">

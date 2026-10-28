@@ -10,20 +10,20 @@ const DEFAULT_VOLUME = 0.05; // Volume from 0.0 (mute) to 1.0 (max)
 const TRACKS = [
   {
     id: 1,
-    title: "Soldiers Rage",
-    artist: "Tha Mechanic",
+    title: "Sound Architect",
+    artist: "Glitch™",
     src: "/music/01.mp3",
   },
   {
     id: 2,
-    title: "Atmosphere 2",
-    artist: "System",
+    title: "Deflector",
+    artist: "Ghostrifter Official",
     src: "/music/02.mp3",
   },
   {
     id: 3,
-    title: "Ambient 3",
-    artist: "System",
+    title: "Universe",
+    artist: "Sappheiros",
     src: "/music/03.mp3",
   },
 ];

@@ -17,7 +17,7 @@ const SplashScreen = ({ onComplete }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowEnterButton(true);
-    }, 2800);
+    }, 6000);
 
     return () => clearTimeout(timer);
   }, []);
