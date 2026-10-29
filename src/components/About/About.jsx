@@ -1,6 +1,7 @@
 // src/components/About/About.jsx
 import React from "react";
 import Section1 from "./Components/Section1";
+import Section2 from "./Components/Section2";
 
 export default function About() {
   return (
@@ -13,7 +14,8 @@ export default function About() {
         {/* Section 1: Intro Header & Interactive DP */}
         <Section1 />
 
-        {/* Section 2, 3, etc. will stack seamlessly here */}
+        {/* Section 2: Personal Journey Scroll Timeline */}
+        <Section2 />
       </div>
     </div>
   );

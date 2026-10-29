@@ -163,6 +163,24 @@ export default function Section1() {
           delay={0.9}
         />
       </div>
+
+      {/* Scroll down */}
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="mt-8 sm:mt-10 md:mt-24 flex shrink-0 flex-col items-center justify-center mb-8 sm:mb-10"
+      >
+        <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.35em] text-muted-foreground/80 mb-3">
+          SCROLL
+        </span>
+        <motion.div
+          animate={{ y: [0, 6, 0], opacity: [0.4, 1, 0.4] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="w-[1px] h-8 bg-gradient-to-b from-blue-400 to-transparent"
+        />
+      </motion.div>
     </section>
   );
 }
