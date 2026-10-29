@@ -1,4 +1,4 @@
-// src/components/Title/HeaderComp/Middle.jsx
+// src\components\Header\HeaderComp\Middle.jsx
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";

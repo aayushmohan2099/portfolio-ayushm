@@ -5,6 +5,8 @@ import { useScroll, useTransform } from "framer-motion";
 import LeftPanel from "./Components/LeftPanel";
 import MainPanel from "./Components/MainPanel";
 import RightPanel from "./Components/RightPanel";
+import Intro from "./Components/Intro";
+import FeaturedProj from "./Components/FeaturedProj";
 
 // ==========================================
 // CONFIGURATION: TEXT ANIMATION DELAYS
@@ -29,14 +31,14 @@ const Title = ({ shouldStartMusic }) => {
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.9]);
 
   return (
-    // touch-auto unlocks vertical scrolling on mobile devices while keeping desktop locked to 100vh
-    <div className="title-bg-anim relative w-full min-h-screen md:h-screen overflow-x-hidden md:overflow-hidden touch-auto">
+    <div className="title-bg-anim relative w-full min-h-screen overflow-x-hidden touch-auto">
       {/* Blur layer */}
       <div className="absolute inset-0 z-[2] backdrop-blur-[1px] pointer-events-none" />
 
+      {/* Section 1: Hero */}
       <section
         ref={ref}
-        className="relative z-10 min-h-screen md:h-screen w-full p-4 md:p-6 pointer-events-none"
+        className="relative z-10 min-h-screen md:h-screen w-full p-4 md:p-6 pointer-events-none overflow-hidden"
       >
         {/* Switched from strict grid to a responsive flex-col that snaps to grid on medium screens */}
         <div className="h-full w-full flex flex-col md:grid md:grid-cols-[1fr_3fr_1fr] md:grid-rows-[60px_1fr_60px] gap-2 pointer-events-auto">
@@ -69,6 +71,16 @@ const Title = ({ shouldStartMusic }) => {
           </div>
         </div>
       </section>
+
+      {/* Section 2: Marquee Strip + Interactive Cyber Intro */}
+      <div className="relative z-20">
+        <Intro />
+      </div>
+
+      {/* Section 3: Featured Work 3D Bend Carousel */}
+      <div className="relative z-20">
+        <FeaturedProj />
+      </div>
     </div>
   );
 };

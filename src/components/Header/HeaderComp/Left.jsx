@@ -1,4 +1,4 @@
-// src/components/Title/HeaderComp/Left.jsx
+// src\components\Header\HeaderComp\Left.jsx
 import React, { useState, useEffect, useRef } from "react";
 
 // ==========================================

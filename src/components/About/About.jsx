@@ -2,6 +2,7 @@
 import React from "react";
 import Section1 from "./Components/Section1";
 import Section2 from "./Components/Section2";
+import Section3 from "./Components/Section3";
 
 export default function About() {
   return (
@@ -16,6 +17,9 @@ export default function About() {
 
         {/* Section 2: Personal Journey Scroll Timeline */}
         <Section2 />
+
+        {/* Section 3: How I Work - 3D Engineering Process Cards */}
+        <Section3 />
       </div>
     </div>
   );

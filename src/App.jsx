@@ -7,14 +7,45 @@ import MouseEffects from "@/components/ui/click-effects";
 
 // Pages & Shared Header
 import SplashScreen from "./components/SplashScreen";
-import Title from "./components/Title/Title";
 import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import Title from "./components/Title/Title";
 import About from "./components/About/About";
 
 function App() {
   const [showSplash, setShowSplash] = useState(true);
   const [shouldStartMusic, setShouldStartMusic] = useState(false);
   const [isReturning, setIsReturning] = useState(false);
+  // Header scroll contraction & manual expansion states
+  const [isHeaderContracted, setIsHeaderContracted] = useState(false);
+  const [isManuallyExpanded, setIsManuallyExpanded] = useState(false);
+
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      // Reset to fully expanded when near top
+      if (currentScrollY < 60) {
+        setIsHeaderContracted(false);
+        setIsManuallyExpanded(false);
+      } else if (currentScrollY > 110) {
+        if (!isManuallyExpanded) {
+          setIsHeaderContracted(true);
+        }
+        // If user scrolls down significantly after expanding, re-contract
+        if (currentScrollY - lastScrollY > 60) {
+          setIsManuallyExpanded(false);
+          setIsHeaderContracted(true);
+        }
+      }
+      lastScrollY = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isManuallyExpanded]);
 
   // Initialize route from the actual browser URL, fallback to /home
   const [currentRoute, setCurrentRoute] = useState(() => {
@@ -143,7 +174,11 @@ function App() {
             {/* Persistent Global Header across ALL routes */}
             <div className="fixed top-0 left-0 right-0 z-50 p-4 md:p-6 pointer-events-none">
               <div className="w-full min-h-[60px] pointer-events-auto">
-                <Header shouldStartMusic={shouldStartMusic} />
+                <Header
+                  shouldStartMusic={shouldStartMusic}
+                  isContracted={isHeaderContracted && !isManuallyExpanded}
+                  onExpand={() => setIsManuallyExpanded(true)}
+                />
               </div>
             </div>
 
@@ -154,6 +189,9 @@ function App() {
             )}
 
             {currentRoute === "/about" && <About />}
+
+            {/* Global Footer rendered across pages */}
+            <Footer />
           </motion.main>
         )}
       </LayoutGroup>
