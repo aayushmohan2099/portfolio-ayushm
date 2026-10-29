@@ -13,8 +13,6 @@ import dpImage from "@/assets/dp.jpg";
 const NAV_SECTIONS = [
   { id: "home", label: "Home" },
   { id: "about", label: "About" },
-  { id: "skills", label: "Skills" },
-  { id: "projects", label: "Projects" },
   { id: "experience", label: "Experience" },
   { id: "contact", label: "Contact" },
 ];
@@ -24,6 +22,7 @@ const Middle = () => {
   const [activeSection, setActiveSection] = useState(() => {
     const path = window.location.pathname;
     if (path === "/about") return "about";
+    if (path === "/experience") return "experience";
     if (path === "/contact-me") return "contact";
     return "home";
   });
@@ -36,6 +35,7 @@ const Middle = () => {
       if (targetPath === "/" || targetPath === "/home")
         setActiveSection("home");
       else if (targetPath === "/about") setActiveSection("about");
+      else if (targetPath === "/experience") setActiveSection("experience");
       else if (targetPath === "/contact-me") setActiveSection("contact");
     };
 
@@ -58,7 +58,7 @@ const Middle = () => {
             path: "/about",
             variant: "fade", // You can change this to "draw", "curtain", or "overlay"
             changeTheme: 0,
-            overlayText: "ABOUT ME",
+            overlayText: "Wanna know About ME?",
           },
         }),
       );
@@ -78,9 +78,20 @@ const Middle = () => {
         new CustomEvent("app-navigate", {
           detail: {
             path: "/home",
-            variant: "curtain",
+            variant: "fade",
             changeTheme: 0,
-            overlayText: "RETURNING HOME",
+            overlayText: "Back to Home!",
+          },
+        }),
+      );
+    } else if (sectionId === "experience") {
+      window.dispatchEvent(
+        new CustomEvent("app-navigate", {
+          detail: {
+            path: "/experience",
+            variant: "fade",
+            changeTheme: 0,
+            overlayText: "Sure! Let me tell you about my Experiences",
           },
         }),
       );

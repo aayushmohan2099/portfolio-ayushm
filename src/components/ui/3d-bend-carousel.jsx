@@ -1,4 +1,4 @@
-// src/components/ui/3d-bend-carousel.jsx
+// src\components\ui\3d-bend-carousel.jsx
 "use client";
 
 import React, {
@@ -20,6 +20,95 @@ import {
   ExternalLink,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+
+export function CarouselMedia({ item, isActive = true, alt, className }) {
+  const videoRef = useRef(null);
+  const [loadedVideoSrc, setLoadedVideoSrc] = useState(null);
+  const [failedVideoSrc, setFailedVideoSrc] = useState(null);
+
+  const videoSrc = item?.video;
+  const thumbnailSrc =
+    item?.thumbnail ?? item?.poster ?? item?.image ?? item?.media;
+  const imageSrc = item?.image ?? item?.media ?? thumbnailSrc;
+
+  const hasVideo = Boolean(videoSrc);
+  const hasVideoError = failedVideoSrc === videoSrc;
+  const isVideoReady = loadedVideoSrc === videoSrc && !hasVideoError;
+
+  useEffect(() => {
+    const video = videoRef.current;
+
+    if (!hasVideo || !video || hasVideoError) return;
+
+    if (!isActive) {
+      video.pause();
+      return;
+    }
+
+    const playPromise = video.play();
+    playPromise?.catch(() => {});
+  }, [hasVideo, hasVideoError, isActive, videoSrc]);
+
+  if (!hasVideo) {
+    return imageSrc ? (
+      <img
+        src={imageSrc}
+        alt={alt}
+        className={className}
+        loading="lazy"
+        draggable={false}
+      />
+    ) : null;
+  }
+
+  return (
+    <div
+      className={cn(
+        "absolute inset-0 w-full h-full overflow-hidden pointer-events-none select-none",
+        className,
+      )}
+    >
+      {thumbnailSrc && (
+        <img
+          src={thumbnailSrc}
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          draggable={false}
+          className={cn(
+            "absolute inset-0 z-10 w-full h-full object-cover transition-opacity duration-300 ease-out",
+            isVideoReady ? "opacity-0" : "opacity-100",
+          )}
+        />
+      )}
+
+      {!hasVideoError && (
+        <video
+          ref={videoRef}
+          key={videoSrc}
+          src={videoSrc}
+          poster={thumbnailSrc || undefined}
+          muted
+          defaultMuted
+          loop
+          playsInline
+          preload={isActive ? "auto" : "metadata"}
+          aria-label={alt}
+          onLoadedData={() => setLoadedVideoSrc(videoSrc)}
+          onCanPlay={() => setLoadedVideoSrc(videoSrc)}
+          onError={() => {
+            setLoadedVideoSrc(null);
+            setFailedVideoSrc(videoSrc);
+          }}
+          className={cn(
+            "absolute inset-0 w-full h-full object-cover pointer-events-none transition-opacity duration-300 ease-out",
+            isVideoReady || !thumbnailSrc ? "opacity-100" : "opacity-0",
+          )}
+        />
+      )}
+    </div>
+  );
+}
 
 export const ThreeDBendCarousel = forwardRef(
   (
@@ -450,7 +539,6 @@ export const ThreeDBendCarousel = forwardRef(
         }}
         aria-label="3D Featured Work Carousel"
       >
-        {/* 3D Stage */}
         <div
           className="relative w-full h-full flex items-center justify-center pointer-events-none"
           style={{
@@ -495,11 +583,11 @@ export const ThreeDBendCarousel = forwardRef(
                   renderItem(item, index, isCenter)
                 ) : (
                   <div className="relative w-full h-full flex flex-col justify-end overflow-hidden group/card">
-                    <img
-                      src={item.image}
+                    <CarouselMedia
+                      item={item}
+                      isActive={isCenter}
                       alt={item.title || `Slide ${index + 1}`}
                       className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
-                      loading="lazy"
                     />
 
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent pointer-events-none" />
@@ -533,7 +621,6 @@ export const ThreeDBendCarousel = forwardRef(
           })}
         </div>
 
-        {/* Navigation Arrows */}
         {showControls && (
           <div
             className="absolute z-30 inset-x-2 sm:inset-x-8 top-1/2 -translate-y-1/2 flex items-center justify-between pointer-events-none"
@@ -559,7 +646,6 @@ export const ThreeDBendCarousel = forwardRef(
           </div>
         )}
 
-        {/* Counter Indicator Pill */}
         {showIndicators && count > 1 && (
           <div
             className="absolute top-6 left-6 z-30 pointer-events-auto"

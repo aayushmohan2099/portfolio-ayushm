@@ -2,8 +2,20 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink } from "lucide-react";
-import ThreeDBendCarousel from "@/components/ui/3d-bend-carousel";
+import ThreeDBendCarousel, {
+  CarouselMedia,
+} from "@/components/ui/3d-bend-carousel";
+
+// Projects
+import upsrlmThumb from "../../../assets/proj/upsrlm/thumb.png";
 import pr_vid from "../../../assets/proj/upsrlm/pr_vid.mp4";
+import tjs_vid from "../../../assets/proj/tjs/tjs_vid.mp4";
+import abhrms_vid from "../../../assets/proj/abhrms/abhrms_vid.mp4";
+import eatpur_vid from "../../../assets/proj/eatpur/eatpur_vid.mp4";
+
+import tjsThumb from "../../../assets/proj/tjs/thumb.png";
+import eatpurThumb from "../../../assets/proj/eatpur/thumb.png";
+import abhrmsThumb from "../../../assets/proj/abhrms/thumb.png";
 
 // ==========================================
 // FEATURED PROJECTS METADATA (Sourced from CV)
@@ -16,7 +28,9 @@ const PROJECTS = [
     badge: "01",
     link: "https://upsrlmtms.upsdc.gov.in/",
     // Placeholder image: replace with your project screenshot, GIF, or video
-    media: pr_vid,
+    media: upsrlmThumb,
+    video: pr_vid,
+    thumbnail: upsrlmThumb,
     oneLiner:
       "Architected the foundational BMS & TMS ecosystem consolidating multi-tier rural beneficiary records with biometric verification across Uttar Pradesh.",
     metrics: "6.5L+ Cadres Managed",
@@ -28,8 +42,9 @@ const PROJECTS = [
     badge: "02",
     link: "https://ab-hrms.in/",
     // Placeholder image: replace with your project screenshot, GIF, or video
-    media:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1600&auto=format&fit=crop",
+    media: abhrmsThumb,
+    thumbnail: abhrmsThumb,
+    video: abhrms_vid,
     oneLiner:
       "Engineered automated enterprise workforce management featuring multi-role access hierarchies, payroll normalization, and compliance pipelines.",
     metrics: "End-to-End Automation",
@@ -41,8 +56,9 @@ const PROJECTS = [
     badge: "03",
     link: "https://eatpur.in/",
     // Placeholder image: replace with your project screenshot, GIF, or video
-    media:
-      "https://images.unsplash.com/photo-1472851294608-062f824d29cc?q=80&w=1600&auto=format&fit=crop",
+    media: eatpurThumb,
+    video: eatpur_vid,
+    thumbnail: eatpurThumb,
     oneLiner:
       "High-conversion direct-to-consumer store with optimized real-time inventory synchronization, sub-second checkout, and payment gateways.",
     metrics: "Ultra-Fast Checkout",
@@ -54,8 +70,9 @@ const PROJECTS = [
     badge: "04",
     link: "https://www.thejunglestory.in/",
     // Placeholder image: replace with your project screenshot, GIF, or video
-    media:
-      "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1600&auto=format&fit=crop",
+    media: tjsThumb,
+    thumbnail: tjsThumb,
+    video: tjs_vid,
     oneLiner:
       "Immersive, motion-first resort showcase designed with micro-interactions, room reservation routing, and editorial typography.",
     metrics: "60fps Motion UI",
@@ -74,12 +91,13 @@ export default function FeaturedProj() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Responsive project card width
   const cardWidth =
     viewportWidth < 640
-      ? Math.min(viewportWidth - 48, 380)
+      ? Math.min(viewportWidth - 32, 400) // Mobile
       : viewportWidth < 1024
-        ? 540
-        : 720;
+        ? Math.min(viewportWidth - 48, 640) // Tablet
+        : Math.min(viewportWidth - 80, 1060); // Desktop
 
   return (
     <section className="relative w-full bg-background text-foreground py-20 sm:py-28 overflow-hidden touch-auto">
@@ -112,12 +130,22 @@ export default function FeaturedProj() {
           items={PROJECTS}
           itemWidth={cardWidth}
           aspectRatio={16 / 9}
-          gap={viewportWidth < 640 ? -24 : -50}
-          perspective={1100}
-          bendAngle={viewportWidth < 640 ? 25 : 36}
-          depth={viewportWidth < 640 ? 220 : 360}
-          height={viewportWidth < 640 ? 320 : 480}
-          activeScale={1.04}
+          // Card spacing
+          gap={viewportWidth < 640 ? -16 : viewportWidth < 1024 ? -35 : -55}
+          // 3D perspective
+          perspective={
+            viewportWidth < 640 ? 900 : viewportWidth < 1024 ? 1200 : 1450
+          }
+          // Curvature of the carousel
+          bendAngle={viewportWidth < 640 ? 20 : viewportWidth < 1024 ? 27 : 30}
+          // Distance of inactive cards from the viewer
+          depth={viewportWidth < 640 ? 180 : viewportWidth < 1024 ? 280 : 380}
+          // Dynamically allocate height based on card dimensions
+          height={Math.round(
+            cardWidth / (16 / 9) + (viewportWidth < 640 ? 100 : 120),
+          )}
+          // Active card emphasis
+          activeScale={1.03}
           loop={true}
           autoPlay={false}
           renderItem={(project, index, isCenter) => {
@@ -135,11 +163,11 @@ export default function FeaturedProj() {
                 {/* <video src="..." autoPlay loop muted playsInline />  */}
                 {/* ==================================================== */}
                 <div className="absolute inset-0 w-full h-full overflow-hidden">
-                  <img
-                    src={project.media}
+                  <CarouselMedia
+                    item={project}
+                    isActive={isCenter}
                     alt={project.title}
                     className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover/proj:scale-105 pointer-events-none"
-                    loading="lazy"
                   />
                   {/* Subtle dark gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-black/20 pointer-events-none" />
@@ -180,7 +208,7 @@ export default function FeaturedProj() {
                         },
                       }}
                       onClick={(e) => e.stopPropagation()}
-                      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-blue-600/90 hover:bg-blue-500 text-white font-medium text-xs sm:text-sm tracking-wide shadow-[0_0_24px_rgba(59,130,246,0.6)] border border-blue-400/40 backdrop-blur-xl pointer-events-auto cursor-pointer"
+                      className="absolute inset-0 z-30 m-auto inline-flex h-fit w-fit items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-blue-600/90 hover:bg-blue-500 text-white font-medium text-xs sm:text-sm tracking-wide shadow-[0_0_24px_rgba(59,130,246,0.6)] border border-blue-400/40 backdrop-blur-xl pointer-events-auto cursor-pointer"
                     >
                       <span>View Project</span>
                       <ExternalLink className="w-3.5 h-3.5" />

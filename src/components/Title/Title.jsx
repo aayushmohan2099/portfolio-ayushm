@@ -7,6 +7,8 @@ import MainPanel from "./Components/MainPanel";
 import RightPanel from "./Components/RightPanel";
 import Intro from "./Components/Intro";
 import FeaturedProj from "./Components/FeaturedProj";
+import Playground from "./Components/Playground";
+import WebDesigns from "./Components/WebDesigns";
 
 // ==========================================
 // CONFIGURATION: TEXT ANIMATION DELAYS
@@ -34,7 +36,6 @@ const Title = ({ shouldStartMusic }) => {
     <div className="title-bg-anim relative w-full min-h-screen overflow-x-hidden touch-auto">
       {/* Blur layer */}
       <div className="absolute inset-0 z-[2] backdrop-blur-[1px] pointer-events-none" />
-
       {/* Section 1: Hero */}
       <section
         ref={ref}
@@ -71,15 +72,21 @@ const Title = ({ shouldStartMusic }) => {
           </div>
         </div>
       </section>
-
       {/* Section 2: Marquee Strip + Interactive Cyber Intro */}
       <div className="relative z-20">
         <Intro />
       </div>
-
       {/* Section 3: Featured Work 3D Bend Carousel */}
       <div className="relative z-20">
         <FeaturedProj />
+      </div>
+      {/* Section 4: Playground 3D Depth Gallery */}
+      <div className="relative z-20">
+        <Playground />
+      </div>
+      {/* Section 5: Web Design Hover Image Reveal */}
+      <div className="relative z-20">
+        <WebDesigns />
       </div>
     </div>
   );

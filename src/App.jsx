@@ -11,6 +11,7 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import Title from "./components/Title/Title";
 import About from "./components/About/About";
+import Experience from "./components/Experience/Experience";
 
 function App() {
   const [showSplash, setShowSplash] = useState(true);
@@ -189,6 +190,8 @@ function App() {
             )}
 
             {currentRoute === "/about" && <About />}
+
+            {currentRoute === "/experience" && <Experience />}
 
             {/* Global Footer rendered across pages */}
             <Footer />
