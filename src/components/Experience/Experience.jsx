@@ -895,7 +895,7 @@ const EXPERIENCE_COMPANIES = [
     position: "left",
     shortName: "TechnoHorizon",
     name: "TechnoHorizon Co. Ltd.",
-    role: "Lead Software Developer",
+    role: "Software Developer",
     period: "11/2024 – Present",
     location: "Lucknow, IN",
     isLatest: false,
@@ -907,7 +907,7 @@ const EXPERIENCE_COMPANIES = [
     accentBorder: "hover:border-sky-400/60",
     accentGlow: "rgba(56, 189, 248, 0.28)",
     summary:
-      "Lead Software Developer spearheading enterprise architecture, full-stack product delivery, and state-scale digital transformation initiatives.",
+      "Software Developer spearheading enterprise architecture, full-stack product delivery, and state-scale digital transformation initiatives.",
     highlights: [
       "Lead Architect for PMU–IT Unit technical deliverables",
       "Full-Stack React.js, React Native & Django REST ecosystems",
@@ -920,7 +920,7 @@ const EXPERIENCE_COMPANIES = [
     shortName: "UPSRLM",
     name: "UPSRLM (PMU–IT Unit)",
     fullName: "Uttar Pradesh State Rural Livelihood Mission",
-    role: "Software Developer — PMU–IT",
+    role: "Lead Software Developer — PMU–IT",
     period: "11/2024 – Present",
     location: "Lucknow, IN",
     isLatest: true,

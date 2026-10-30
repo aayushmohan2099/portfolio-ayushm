@@ -1,0 +1,143 @@
+{
+  "companyId": "technohorizon",
+  "title": "TechnoHorizon",
+  "fullName": "TechnoHorizon Co. Ltd.",
+  "eyebrow": "SOFTWARE DEVELOPER · ENTERPRISE & COMMERCIAL",
+  "subtitle": "Full-cycle SDLC orchestration, enterprise HRMS suites, high-conversion commercial platforms, and internal engineering ecosystems.",
+  "role": "Software Developer",
+  "employmentNote": "Core Commercial & Enterprise Engineering Division",
+  "period": "11/2024 – Present",
+  "location": "Lucknow, Uttar Pradesh",
+  "categories": ["All", "Govt", "Private", "In-House"],
+  "idCard": {
+    "name": "Ayush M Srivastava",
+    "role": "Software Developer",
+    "department": "Enterprise & Product Architecture",
+    "companyName": "TechnoHorizon Co. Ltd.",
+    "badgeId": "TH-DEV-2024-AMS",
+    "period": "11/2024 – PRESENT",
+    "location": "Lucknow, UP",
+    "statusText": "ACTIVE // IT DEV",
+    "avatarPath": "techno/dp.jpg",
+    "logoPath": "techno.png",
+    "accentColor": "#38bdf8",
+    "secondaryColor": "#0c4a6e",
+    "ropeColor": "#18181b",
+    "strapText": "TECHNOHORIZON // IT"
+  },
+  "projects": [
+    {
+      "id": "ettm",
+      "title": "ETTM — Employee Task Tracking Manager",
+      "eyebrow": "IN-HOUSE · SDLC & SCRUM ECOSYSTEM",
+      "category": "In-House",
+      "categories": ["In-House"],
+      "assetFolder": "techno/ettm",
+      "link": "https://github.com/aayushmohan2099/TechnoITHubFront.git",
+      "linkLabel": "View GitHub Repo",
+      "shortDesc": "End-to-end internal SDLC & workforce operations platform engineered to track the complete software lifecycle — covering Scrum sprints, task assignments, deadline telemetry, and daily punch-in/punch-out attendance.",
+      "techStack": [
+        "React.js",
+        "Django REST Framework",
+        "SDLC Automation",
+        "Scrum Board",
+        "Attendance Engine",
+        "RBAC"
+      ],
+      "highlights": [
+        "Complete SDLC Lifecycle Tracking: Centralizes sprint planning, Scrum meeting logs, granular task allocation, and real-time deadline monitoring across engineering teams.",
+        "Attendance & Punch Telemetry: Integrated daily punch-in and punch-out verification workflows correlated directly with active task logs and sprint velocity.",
+        "Role-Based Team Governance: Custom permission hierarchies for leads, developers, and project managers to audit deliverables without bottlenecks."
+      ]
+    },
+    {
+      "id": "abhrms",
+      "title": "AB-HRMS — Enterprise Human Resource Management System",
+      "eyebrow": "PRIVATE · ENTERPRISE SAAS PLATFORM",
+      "category": "Private",
+      "categories": ["Private"],
+      "assetFolder": "techno/abhrms",
+      "link": "https://ab-hrms.in/",
+      "linkLabel": "Launch Live Platform",
+      "shortDesc": "Production-grade Human Resource Management System streamlining employee lifecycle onboarding, payroll computation, leave workflows, and organizational analytics.",
+      "techStack": [
+        "React.js",
+        "Python / Django",
+        "PostgreSQL",
+        "Payroll & Leave Engine",
+        "Role-Based Access"
+      ],
+      "highlights": [
+        "Unified Workforce Operations: Digitizes employee directories, attendance ledgers, leave approvals, and departmental hierarchy management.",
+        "Automated Compliance & Reporting: Real-time administrative dashboards and exportable operational reports for HR leadership.",
+        "Scalable Multi-Role Architecture: Built from the ground up with clean REST APIs and responsive interfaces for both desktop admins and mobile staff."
+      ]
+    },
+    {
+      "id": "eatpur",
+      "title": "Eatpur.in — Food & Culinary Commerce Platform",
+      "eyebrow": "PRIVATE · CONSUMER WEB APPLICATION",
+      "category": "Private",
+      "categories": ["Private"],
+      "assetFolder": "techno/eatpur",
+      "link": "https://eatpur.in/",
+      "linkLabel": "Visit Eatpur.in",
+      "shortDesc": "Modern, high-speed digital ordering and brand experience platform crafted with fluid animations, intuitive menu discovery, and mobile-first checkout flows.",
+      "techStack": [
+        "React.js",
+        "Tailwind CSS",
+        "Framer Motion",
+        "REST APIs",
+        "Responsive UI/UX"
+      ],
+      "highlights": [
+        "Mobile-First Consumer Experience: Engineered fast-loading catalog browsing and frictionless cart interactions tailored for on-the-go diners.",
+        "High-Conversion Visual Polish: Combined crisp typography, appetizing visual hierarchy, and smooth micro-interactions."
+      ]
+    },
+    {
+      "id": "thejunglestory",
+      "title": "The Jungle Story (thejunglestory.in)",
+      "eyebrow": "PRIVATE · HOSPITALITY & EXPERIENTIAL BRAND",
+      "category": "Private",
+      "categories": ["Private"],
+      "assetFolder": "techno/tjs",
+      "link": "https://www.thejunglestory.in/",
+      "linkLabel": "Visit Live Website",
+      "shortDesc": "Immersive digital storefront and booking experience designed to showcase nature-inspired hospitality, curated stays, and visual storytelling.",
+      "techStack": [
+        "React.js",
+        "Modern CSS",
+        "Interactive Galleries",
+        "SEO Optimization",
+        "Responsive Layout"
+      ],
+      "highlights": [
+        "Atmospheric Brand Storytelling: Designed rich visual layouts and smooth scroll reveals that reflect the brand's natural aesthetic.",
+        "Cross-Device Performance: Optimized media delivery and responsive breakpoints for seamless browsing across mobile, tablet, and desktop."
+      ]
+    },
+    {
+      "id": "techno-portal",
+      "title": "TechnoHorizon Corporate Portal (technohorizon.co.in)",
+      "eyebrow": "IN-HOUSE · CORPORATE IDENTITY & WEB",
+      "category": "In-House",
+      "categories": ["In-House"],
+      "assetFolder": "techno/techno",
+      "link": "https://github.com/aayushmohan2099/technohorizon.co.in.git",
+      "linkLabel": "View GitHub Repo",
+      "shortDesc": "Official corporate web presence for TechnoHorizon Co. Ltd. showcasing enterprise IT capabilities, government digital transformation case studies, and service verticals.",
+      "techStack": [
+        "React.js",
+        "Tailwind CSS",
+        "Framer Motion",
+        "Component Architecture",
+        "Vite"
+      ],
+      "highlights": [
+        "Executive Brand Positioning: Architected a clean, authoritative corporate interface highlighting both private-sector products and public-sector IT initiatives.",
+        "Modular Component System: Engineered reusable UI sections and smooth page transitions for long-term maintainability."
+      ]
+    }
+  ]
+}

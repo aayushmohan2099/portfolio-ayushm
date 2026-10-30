@@ -12,6 +12,10 @@ import Footer from "./components/Footer/Footer";
 import Title from "./components/Title/Title";
 import About from "./components/About/About";
 import Experience from "./components/Experience/Experience";
+import ExpMaster from "./components/Experience/Components/expMaster";
+import upsrlmData from "./components/Experience/Components/upsrlm.json";
+import technoData from "./components/Experience/Components/techno.json";
+import edukhojData from "./components/Experience/Components/edukhoj.json";
 
 function App() {
   const [showSplash, setShowSplash] = useState(true);
@@ -193,6 +197,17 @@ function App() {
 
             {currentRoute === "/experience" && <Experience />}
 
+            {currentRoute === "/experience/upsrlm" && (
+              <ExpMaster data={upsrlmData} />
+            )}
+
+            {currentRoute === "/experience/technohorizon" && (
+              <ExpMaster data={technoData} />
+            )}
+
+            {currentRoute === "/experience/edukhoj" && (
+              <ExpMaster data={edukhojData} />
+            )}
             {/* Global Footer rendered across pages */}
             <Footer />
           </motion.main>

@@ -1,0 +1,178 @@
+{
+  "companyId": "upsrlm",
+  "title": "UPSRLM",
+  "fullName": "Uttar Pradesh State Rural Livelihood Mission",
+  "eyebrow": "PMU–IT UNIT · PRAGATI SETU 1.0",
+  "subtitle": "State-scale rural governance portals, offline-first field mobile apps, and real-time analytical data pipelines — everything engineered in one ecosystem.",
+  "role": "Software Developer (PMU–IT Unit)",
+  "employmentNote": "Employed through TechnoHorizon Co. Ltd.",
+  "period": "11/2024 – Present",
+  "location": "Lucknow, Uttar Pradesh",
+  "categories": ["All", "Govt", "Private", "In-House"],
+  "idCard": {
+    "name": "Ayush M Srivastava",
+    "role": "Lead Software Developer",
+    "department": "PMU–IT Unit (Pragati Setu 1.0)",
+    "companyName": "UPSRLM · Govt. of UP",
+    "badgeId": "PMU-IT-2024-AMS",
+    "period": "11/2024 – PRESENT",
+    "location": "Lucknow, UP",
+    "statusText": "ACTIVE // PMU-IT",
+    "avatarPath": "upsrlm/dp.jpg",
+    "logoPath": "upsrlm.png",
+    "accentColor": "#10b981",
+    "secondaryColor": "#064e3b",
+    "ropeColor": "#18181b",
+    "strapText": "UPSRLM // PMU-IT"
+  },
+  "projects": [
+    {
+      "id": "tms",
+      "title": "Training Management System (TMS)",
+      "eyebrow": "GOVT · PRAGATI SETU 1.0",
+      "category": "Govt",
+      "categories": ["Govt", "In-House"],
+      "assetFolder": "upsrlm/tms",
+      "link": "https://upsrlmtms.upsdc.gov.in/training-management",
+      "linkLabel": "Launch Live Portal",
+      "shortDesc": "End-to-end React.js & Django MIS digitizing the entire rural training journey — from bottom-up Annual Action Planning (AAP) to biometric eKYC attendance and batch certification.",
+      "techStack": ["React.js", "Django REST", "MySQL 8.x", "Biometric eKYC", "CSV Ingestion", "GPS Verification"],
+      "highlights": [
+        "End-to-End Lifecycle Automation: Digitized the complete training workflow from bottom-up Annual Action Planning (AAP) to final batch certification.",
+        "Advanced Attendance Verification: Engineered Day-1 biometric eKYC and daily CSV punch file ingestion that automatically computes presence from valid IN/OUT logs.",
+        "Logistics & Infrastructure Management: Built Training Partner centre registration with GPS coordinates and mandatory media uploads verified before batch approval."
+      ]
+    },
+    {
+      "id": "epsms",
+      "title": "Enterprise Sakhi Management System (EPSMS)",
+      "eyebrow": "GOVT · STATE MONITORING MIS",
+      "category": "Govt",
+      "categories": ["Govt", "In-House"],
+      "assetFolder": "upsrlm/epsms",
+      "link": "https://upsrlmtms.upsdc.gov.in/Enterprise-Tracking",
+      "linkLabel": "Launch State Dashboard",
+      "shortDesc": "Dual-platform web monitoring dashboard and lifecycle tracking system managing economic data and financial scorecards for 6.5 lakh rural women entrepreneurs.",
+      "techStack": ["React.js", "Django REST", "React Native Sync", "Financial Engines", "RBAC"],
+      "highlights": [
+        "Dual-Platform Architecture: Led development of the state-level React.js monitoring dashboard paired with the Udhyam Sakhi mobile field app.",
+        "Lifecycle Data Capture: Structured workflows across Existing Enterprise, New Enterprise, and No Enterprise stages.",
+        "Integrated Financial Tracking: Auto-calculation engines for Gross Profit and Annual Turnover across 6.5 lakh women entrepreneurs."
+      ]
+    },
+    {
+      "id": "crpep",
+      "title": "Udhyam Sakhi Android App (CRP-EP)",
+      "eyebrow": "GOVT · GOOGLE PLAY STORE",
+      "category": "Govt",
+      "categories": ["Govt"],
+      "assetFolder": "upsrlm/crpep",
+      "link": "https://play.google.com/store/apps/details?id=com.crp_ep_demo&hl=en_IN",
+      "linkLabel": "View on Google Play",
+      "shortDesc": "Offline-first React Native Android application enabling rural field cadres (CRP-EPs) to capture enterprise lifecycle data in low-bandwidth villages with deferred cloud sync.",
+      "techStack": ["React Native", "Android", "Offline-First Sync", "SQLite / AsyncStorage", "REST APIs"],
+      "highlights": [
+        "Offline-First Rural Engineering: Implemented local queuing and deferred synchronization so field cadres never lose data in zero-connectivity zones.",
+        "Automated Field Calculations: Built-in Gross Profit and Annual Turnover calculators reduce manual entry errors during doorstep surveys.",
+        "Production Deployment: Published and actively utilized by field cadres on the Google Play Store."
+      ]
+    },
+    {
+      "id": "ldms",
+      "title": "Lakhpati Didi Management System (LDMS)",
+      "eyebrow": "GOVT · OUTCOME MONITORING",
+      "category": "Govt",
+      "categories": ["Govt", "In-House"],
+      "assetFolder": "upsrlm/ldms",
+      "link": "https://upsrlmtms.upsdc.gov.in/Lakhpati-Didi",
+      "linkLabel": "Launch LDMS Portal",
+      "shortDesc": "Outcome-focused monitoring framework tracking Potential Lakhpati Didis (PLDs) against multi-year Individual Entrepreneurship Plans with mandatory photographic evidence.",
+      "techStack": ["React.js", "Django REST", "AEP / VPRP Tracking", "Evidence Verification", "MySQL"],
+      "highlights": [
+        "Outcome-Focused Framework: Transitioned mission tracking from simple activity logs to monitoring Potential Lakhpati Didis against 2–3 year Entrepreneurship Plans (AEP/VPRP).",
+        "Evidence-Based Accountability: Enforced mandatory photographic and documentary proof across training, finance, and mentoring touchpoints to eliminate verbal reporting traps."
+      ]
+    },
+    {
+      "id": "pbid",
+      "title": "Power BI Analytical Dashboard Pipelines",
+      "eyebrow": "IN-HOUSE · BI & DATA ENGINEERING",
+      "category": "In-House",
+      "categories": ["In-House", "Govt"],
+      "assetFolder": "upsrlm/pbid",
+      "link": "https://upsrlmtms.upsdc.gov.in/user-management",
+      "linkLabel": "View Analytics Suite",
+      "shortDesc": "Automated data ingestion pipelines using Power BI Dataflows, DirectQuery, and native DAX measures — replacing fragmented manual Excel backends with real-time state scorecards.",
+      "techStack": ["Power BI", "DAX Measures", "Dataflows", "DirectQuery", "SQL Views"],
+      "highlights": [
+        "Automated Data Pipelines: Engineered the transition from fragmented manual Excel sheets to automated ingestion via Power BI Dataflows and DirectQuery.",
+        "Advanced Analytical Infrastructure: Authored native DAX measures for real-time district/block scorecard calculations and rankings."
+      ]
+    },
+    {
+      "id": "uppld",
+      "title": "UPPLD Aspirational Blocks Dashboard",
+      "eyebrow": "GOVT · EXECUTIVE TELEMETRY",
+      "category": "Govt",
+      "categories": ["Govt", "In-House"],
+      "assetFolder": "upsrlm/uppld",
+      "link": "https://upsrlmtms.upsdc.gov.in/",
+      "linkLabel": "Open Block Telemetry",
+      "shortDesc": "High-visibility executive monitoring dashboard tracking livelihood saturation, SHG credit linkage, and Lakhpati Didi progression across Uttar Pradesh's Aspirational Blocks.",
+      "techStack": ["React.js", "Analytical Charts", "Geo-Hierarchy Drilldown", "Django REST"],
+      "highlights": [
+        "Granular Administrative Drilldowns: Real-time KPI aggregation across State, District, Aspirational Block, Gram Panchayat, and Village levels.",
+        "Executive Decision Support: Built interactive visual scorecards for mission leadership reviews."
+      ]
+    },
+    {
+      "id": "ssa",
+      "title": "Samuh Saathi App",
+      "eyebrow": "GOVT · SHG FIELD COMPANION",
+      "category": "Govt",
+      "categories": ["Govt"],
+      "assetFolder": "upsrlm/ssa",
+      "link": "https://github.com/aayushmohan2099/samuh-saathi-v1",
+      "linkLabel": "View GitHub Repo",
+      "shortDesc": "Dedicated mobile companion engineered for Self-Help Group (SHG) facilitators to streamline group meetings, member onboarding, and grassroots record digitization.",
+      "techStack": ["React Native", "Mobile UI", "REST APIs", "SHG Workflows"],
+      "highlights": [
+        "Grassroots Usability: Designed high-contrast, intuitive mobile workflows tailored for rural SHG sakhis and community cadres.",
+        "Seamless Backend Sync: Integrated directly with master beneficiary registries for instant member lookup."
+      ]
+    },
+    {
+      "id": "mccy",
+      "title": "Mahila Udhyami Credit Card Yojana App",
+      "eyebrow": "GOVT · RURAL FINTECH APP",
+      "category": "Govt",
+      "categories": ["Govt"],
+      "assetFolder": "upsrlm/mccy",
+      "link": "https://github.com/aayushmohan2099/mccy-android",
+      "linkLabel": "View GitHub Repo",
+      "shortDesc": "Android application digitizing credit card applications, eligibility verification, and bank linkage tracking for rural women entrepreneurs under the MCCY scheme.",
+      "techStack": ["Android", "React Native", "FinTech Workflows", "KYC Verification"],
+      "highlights": [
+        "End-to-End Credit Application Flow: Simplified application capture, document verification, and status tracking for rural women entrepreneurs.",
+        "Bank Linkage Visibility: Transparent stage-by-stage tracking from block submission to branch sanction."
+      ]
+    },
+    {
+      "id": "bms",
+      "title": "Beneficiary Management System (BMS)",
+      "eyebrow": "IN-HOUSE · FOUNDATIONAL MASTER LAYER",
+      "category": "In-House",
+      "categories": ["In-House", "Govt"],
+      "assetFolder": "upsrlm/bms",
+      "link": "https://upsrlmtms.upsdc.gov.in/beneficiary-profiling",
+      "linkLabel": "Explore Master Architecture",
+      "shortDesc": "The authoritative 3NF MySQL 8.x master reference layer synchronizing NRLM LokOS beneficiary data with jurisdiction-based RBAC across Block, District, and State hierarchies.",
+      "techStack": ["Django REST Framework", "MySQL 8.x (3NF)", "LokOS API Sync", "Hierarchical RBAC"],
+      "highlights": [
+        "Foundational Master Layer: Consolidated fragmented mission records into a normalized MySQL 8.x (3NF) database serving as the Single Version of Truth.",
+        "NRLM LokOS API Synchronization: Engineered secure API consumers to fetch and filter active SHG members from MasterData and Production servers.",
+        "Jurisdiction-Based Governance: Implemented strict Role-Based Access Control (RBAC) scoping data visibility across Block, District, and State hierarchies."
+      ]
+    }
+  ]
+}

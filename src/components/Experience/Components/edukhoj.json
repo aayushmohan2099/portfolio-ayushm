@@ -1,0 +1,54 @@
+{
+  "companyId": "edukhoj",
+  "title": "Edukhoj Services",
+  "fullName": "Edukhoj Services — EdTech Platform",
+  "eyebrow": "EDTECH ENGINEERING · FULL-STACK INTERNSHIP",
+  "subtitle": "Scalable educational search infrastructure, high-performance ElasticSearch discovery pipelines, and interactive React.js web experiences.",
+  "role": "Software Developer Intern",
+  "employmentNote": "Full-Stack Product & Search Engineering",
+  "period": "09/2023 – 03/2024",
+  "location": "Lucknow, Uttar Pradesh",
+  "categories": ["All", "Govt", "Private", "In-House"],
+  "idCard": {
+    "name": "Ayush M Srivastava",
+    "role": "Software Developer Intern",
+    "department": "Core EdTech Platform Team",
+    "companyName": "Edukhoj Services · Lucknow",
+    "badgeId": "EDK-INT-2023-AMS",
+    "period": "09/2023 – 03/2024",
+    "location": "Lucknow, UP",
+    "statusText": "ALUMNI // EDTECH",
+    "avatarPath": "edukhoj/dp.jpg",
+    "logoPath": "edukhoj.png",
+    "accentColor": "#ec4899",
+    "secondaryColor": "#4c0519",
+    "ropeColor": "#18181b",
+    "strapText": "EDUKHOJ // ENGINEERING"
+  },
+  "projects": [
+    {
+      "id": "edukhoj-platform",
+      "title": "Edukhoj.in — EdTech Discovery & Search Platform",
+      "eyebrow": "PRIVATE · IN-HOUSE EDTECH PRODUCT",
+      "category": "Private",
+      "categories": ["Private", "In-House"],
+      "assetFolder": "edukhoj/edukhoj",
+      "link": "https://www.linkedin.com/company/edukhoj?originalSubdomain=in",
+      "linkLabel": "View Company Profile",
+      "shortDesc": "Full-stack EdTech platform engineered with Python, Django ORM, PostgreSQL, ElasticSearch DSL, and React.js — powering fast institutional discovery, bulk data ingestion, and interactive user journeys.",
+      "techStack": [
+        "React.js",
+        "Python",
+        "Django ORM",
+        "PostgreSQL",
+        "ElasticSearch DSL",
+        "REST APIs"
+      ],
+      "highlights": [
+        "Frontend & UI Engineering: Built responsive React.js components and interactive UI workflows seamlessly integrated with backend REST APIs to elevate the student and parent discovery experience.",
+        "Search & Database Optimization: Leveraged Django ORM, PostgreSQL, and ElasticSearch DSL to optimize complex search queries, bulk data management, and external dataset integrations.",
+        "Production Reliability & Agile Delivery: Monitored live production environments, resolved critical bottlenecks, authored database walkthrough documentation, and led technical handovers across agile sprints."
+      ]
+    }
+  ]
+}
