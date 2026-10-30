@@ -15,13 +15,13 @@ const MENU_LINKS = [
     label: "About",
     path: "/about",
     variant: "overlay",
-    overlayText: "ABOUT ME",
+    overlayText: "LET ME SHOW YOU MY JOURNEY!",
   },
   {
-    label: "Projects",
-    path: "/projects",
+    label: "Experience",
+    path: "/experience",
     variant: "overlay",
-    overlayText: "PROJECTS",
+    overlayText: "LET ME SHOW YOU MY WORK!",
   },
   {
     label: "Contact",

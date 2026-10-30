@@ -8,6 +8,7 @@ import MouseEffects from "@/components/ui/click-effects";
 // Pages & Shared Header
 import SplashScreen from "./components/SplashScreen";
 import Header from "./components/Header/Header";
+import Contact from "./components/Contact/Contact";
 import Footer from "./components/Footer/Footer";
 import Title from "./components/Title/Title";
 import About from "./components/About/About";
@@ -208,6 +209,9 @@ function App() {
             {currentRoute === "/experience/edukhoj" && (
               <ExpMaster data={edukhojData} />
             )}
+
+            {(currentRoute === "/contact-me" ||
+              currentRoute === "/contact") && <Contact />}
             {/* Global Footer rendered across pages */}
             <Footer />
           </motion.main>
