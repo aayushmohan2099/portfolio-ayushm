@@ -382,22 +382,21 @@ export default function Contact() {
               </div>
 
               <p className="text-xs text-muted-foreground leading-relaxed">
-                Download my standard visual resume (PDF) or the recruiter-ready
-                ATS-optimized format (DOCX).
+                Download my standard visual portfolio (For collaborators) (PDF) or my resume (For recruiters) (DOCX).
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
                 {/* 1. Standard Visual PDF Resume */}
                 <a
                   href={pdfResumeUrl}
-                  download="Ayush_M_Srivastava_Resume.pdf"
+                  download="Ayush_M_Srivastava_Portfolio.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group flex items-center justify-between gap-2 px-4 py-3 rounded-xl bg-blue-500 hover:bg-blue-600 text-white font-sans font-semibold text-xs sm:text-sm shadow-[0_0_24px_rgba(59,130,246,0.35)] transition-all duration-300 cursor-pointer no-underline"
                 >
                   <span className="inline-flex items-center gap-2">
                     <FileText className="w-4 h-4 shrink-0" />
-                    <span>Resume (PDF)</span>
+                    <span>Portfolio (PDF)</span>
                   </span>
                   <Download className="w-4 h-4 transition-transform group-hover:translate-y-0.5" />
                 </a>
@@ -405,12 +404,12 @@ export default function Contact() {
                 {/* 2. ATS-Optimized DOCX Resume */}
                 <a
                   href={atsResumeUrl}
-                  download="Ayush_M_Srivastava_ATS_Resume.docx"
+                  download="Ayush_M_Srivastava_Resume.docx"
                   className="group flex items-center justify-between gap-2 px-4 py-3 rounded-xl border border-border/80 dark:border-white/15 bg-background/80 hover:border-blue-400/60 hover:bg-blue-500/10 text-foreground font-sans font-semibold text-xs sm:text-sm transition-all duration-300 cursor-pointer no-underline"
                 >
                   <span className="inline-flex items-center gap-2">
                     <FileCheck2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                    <span>ATS Optimized (.DOCX)</span>
+                    <span>Resume (.DOCX)</span>
                   </span>
                   <Download className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-transform group-hover:translate-y-0.5" />
                 </a>
