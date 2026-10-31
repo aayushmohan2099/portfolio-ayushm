@@ -66,12 +66,16 @@ function App() {
     text: "Loading Experience",
   });
 
-  // Prevent scrolling while splash screen is active
+  // Prevent scrolling while splash screen is active, and cleanly unlock vertical touch scrolling after
   useEffect(() => {
     if (showSplash) {
       document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "unset";
+      document.body.style.overflowX = "hidden";
+      document.body.style.overflowY = "auto";
+      document.documentElement.style.overflowX = "hidden";
+      document.documentElement.style.overflowY = "auto";
     }
   }, [showSplash]);
 
@@ -143,7 +147,12 @@ function App() {
   }, [currentRoute, showSplash]);
 
   return (
-    <div className="bg-background min-h-screen no-scrollbar text-foreground font-sans select-none touch-none">
+    <div
+      style={{ touchAction: showSplash ? "none" : "pan-y" }}
+      className={`bg-background min-h-screen no-scrollbar text-foreground font-sans select-none ${
+        showSplash ? "touch-none overflow-hidden h-screen" : "touch-pan-y"
+      }`}
+    >
       <SmoothCursor />
       <MouseEffects
         interactionMode="sniper"
@@ -176,6 +185,7 @@ function App() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
+            className="touch-pan-y"
           >
             {/* Persistent Global Header across ALL routes */}
             <div className="fixed top-0 left-0 right-0 z-50 p-4 md:p-6 pointer-events-none">
@@ -212,6 +222,7 @@ function App() {
 
             {(currentRoute === "/contact-me" ||
               currentRoute === "/contact") && <Contact />}
+
             {/* Global Footer rendered across pages */}
             <Footer />
           </motion.main>

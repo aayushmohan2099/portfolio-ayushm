@@ -1,4 +1,4 @@
-// src\components\Header\HeaderComp\Left.jsx
+// src/components/Header/HeaderComp/Left.jsx
 import React, { useState, useEffect, useRef } from "react";
 
 // ==========================================
@@ -6,7 +6,6 @@ import React, { useState, useEffect, useRef } from "react";
 // ==========================================
 const DEFAULT_VOLUME = 0.05; // Volume from 0.0 (mute) to 1.0 (max)
 
-// Add your tracks here. Ensure files exist in public/assets/music/
 const TRACKS = [
   {
     id: 1,
@@ -37,11 +36,10 @@ const Left = ({ shouldStartMusic }) => {
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [volume, setVolume] = useState(DEFAULT_VOLUME * 100);
-  const [isCardOpen, setIsCardOpen] = useState(false); // Controls the dropdown card
+  const [isCardOpen, setIsCardOpen] = useState(false);
 
   const currentTrack = TRACKS[currentTrackIndex];
 
-  // Initialize Volume on mount
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.volume = DEFAULT_VOLUME;
@@ -122,8 +120,7 @@ const Left = ({ shouldStartMusic }) => {
   };
 
   return (
-    <div className="h-full w-full flex items-center justify-start pl-2 md:pl-4 mt-2">
-      {/* Removed autoPlay. Handled strictly by the Enter button interaction */}
+    <div className="h-full w-auto flex items-center justify-start pl-0 sm:pl-1 md:pl-3">
       <audio
         ref={audioRef}
         src={currentTrack.src}
@@ -132,7 +129,6 @@ const Left = ({ shouldStartMusic }) => {
         onLoadedMetadata={handleTimeUpdate}
       />
 
-      {/* Internal CSS strictly adapted from the Uiverse snippet for the playing bars */}
       <style>{`
         @keyframes playing {
           0% { transform: scaleY(0.1); }
@@ -146,44 +142,45 @@ const Left = ({ shouldStartMusic }) => {
         }
       `}</style>
 
-      {/* Anchor container */}
-      <div className="relative flex items-center z-[100] h-12 w-12">
-        {/* Trigger Button: Shows the bouncing bars */}
+      {/* Anchor container - Compact 40px on mobile, 48px on desktop */}
+      <div className="relative flex items-center z-[100] h-10 w-10 sm:h-11 sm:w-11 md:h-12 md:w-12 shrink-0">
         <button
+          type="button"
+          aria-label="Toggle music player"
           onClick={() => setIsCardOpen(!isCardOpen)}
-          className="relative h-12 w-12 bg-card border border-border shadow-md rounded-md flex justify-center items-center overflow-hidden hover:bg-muted transition-colors cursor-pointer"
+          className="relative h-10 w-10 sm:h-11 sm:w-11 md:h-12 md:w-12 bg-card border border-border shadow-md rounded-xl sm:rounded-md flex justify-center items-center overflow-hidden hover:bg-muted transition-colors cursor-pointer"
         >
-          <div className="flex justify-center gap-[2px] w-[30px] h-[20px]">
+          <div className="flex justify-center gap-[2px] w-[24px] sm:w-[30px] h-[16px] sm:h-[20px]">
             <div
-              className="bg-foreground w-[2px] h-[20px] anim-line"
+              className="bg-foreground w-[2px] h-full anim-line"
               style={{
                 animationDelay: "0.2s",
                 animationPlayState: isPlaying ? "running" : "paused",
               }}
             ></div>
             <div
-              className="bg-foreground w-[2px] h-[20px] anim-line"
+              className="bg-foreground w-[2px] h-full anim-line"
               style={{
                 animationDelay: "0.5s",
                 animationPlayState: isPlaying ? "running" : "paused",
               }}
             ></div>
             <div
-              className="bg-foreground w-[2px] h-[20px] anim-line"
+              className="bg-foreground w-[2px] h-full anim-line"
               style={{
                 animationDelay: "0.6s",
                 animationPlayState: isPlaying ? "running" : "paused",
               }}
             ></div>
             <div
-              className="bg-foreground w-[2px] h-[20px] anim-line"
+              className="bg-foreground w-[2px] h-full anim-line"
               style={{
                 animationDelay: "0.0s",
                 animationPlayState: isPlaying ? "running" : "paused",
               }}
             ></div>
             <div
-              className="bg-foreground w-[2px] h-[20px] anim-line"
+              className="bg-foreground w-[2px] h-full anim-line"
               style={{
                 animationDelay: "0.4s",
                 animationPlayState: isPlaying ? "running" : "paused",
@@ -192,16 +189,17 @@ const Left = ({ shouldStartMusic }) => {
           </div>
         </button>
 
-        {/* EXPANDING CARD WIDGET
-          Mobile: Fixed to the top, taking max width over everything.
-          Desktop: Absolute positioned directly under the trigger button.
-        */}
+        {/* EXPANDING CARD WIDGET */}
         <div
           className={`
             transition-all duration-300 ease-out origin-top-left overflow-hidden flex flex-col gap-2 p-3.5
             bg-card/95 backdrop-blur-xl border border-border shadow-[0_10px_40px_-15px_rgba(0,0,0,0.5)] rounded-xl
-            fixed top-20 left-4 right-4 z-[999] md:absolute md:top-[120%] md:left-0 md:right-auto md:w-[320px]
-            ${isCardOpen ? "opacity-100 scale-100 pointer-events-auto" : "opacity-0 scale-95 pointer-events-none hidden md:flex"}
+            fixed top-[4.5rem] sm:top-20 left-3 right-3 z-[999] md:absolute md:top-[120%] md:left-0 md:right-auto md:w-[320px]
+            ${
+              isCardOpen
+                ? "opacity-100 scale-100 pointer-events-auto"
+                : "opacity-0 scale-95 pointer-events-none hidden md:flex"
+            }
           `}
         >
           {/* Top Section: Icon & Texts */}
@@ -245,8 +243,8 @@ const Left = ({ shouldStartMusic }) => {
                 ></div>
               </div>
             </div>
-            <div className="flex flex-col overflow-hidden w-full">
-              <p className="text-foreground text-lg font-black truncate leading-tight">
+            <div className="flex flex-col overflow-hidden w-full pr-6">
+              <p className="text-foreground text-base sm:text-lg font-black truncate leading-tight">
                 {currentTrack.title}
               </p>
               <p className="text-muted-foreground text-xs opacity-80 truncate">
@@ -254,8 +252,9 @@ const Left = ({ shouldStartMusic }) => {
               </p>
             </div>
 
-            {/* Close Button for Mobile (Only visible on small screens) */}
+            {/* Close Button for Mobile */}
             <button
+              type="button"
               onClick={() => setIsCardOpen(false)}
               className="md:hidden absolute top-0 right-0 p-1 text-muted-foreground hover:text-foreground"
             >
@@ -278,7 +277,6 @@ const Left = ({ shouldStartMusic }) => {
 
           {/* Controls Section */}
           <div className="text-foreground flex justify-evenly items-center w-full">
-            {/* Volume Wrapper (Hover to expand slider) */}
             <div className="group/vol flex items-center h-full">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -294,7 +292,7 @@ const Left = ({ shouldStartMusic }) => {
                   fillRule="evenodd"
                 ></path>
               </svg>
-              <div className="overflow-hidden w-0 opacity-0 group-hover/vol:w-20 group-hover/vol:opacity-100 transition-all duration-300 flex items-center pl-2">
+              <div className="overflow-hidden w-16 md:w-0 md:opacity-0 md:group-hover/vol:w-20 md:group-hover/vol:opacity-100 transition-all duration-300 flex items-center pl-2">
                 <input
                   type="range"
                   min="0"
@@ -334,14 +332,12 @@ const Left = ({ shouldStartMusic }) => {
               className="cursor-pointer transition-colors hover:text-foreground/70 scale-110"
             >
               {!isPlaying ? (
-                // Play Icon (Solid Circle with Triangle)
                 <path
                   clipRule="evenodd"
                   fillRule="evenodd"
                   d="M12 2.4a9.6 9.6 0 1 0 0 19.2 9.6 9.6 0 0 0 0-19.2ZM9.6 7.848v8.304a1.2 1.2 0 0 0 1.838.98l6.326-4.152a1.2 1.2 0 0 0 0-1.96l-6.326-4.152A1.2 1.2 0 0 0 9.6 7.848Z"
                 ></path>
               ) : (
-                // Pause Icon
                 <path
                   clipRule="evenodd"
                   d="M21.6 12a9.6 9.6 0 1 1-19.2 0 9.6 9.6 0 0 1 19.2 0ZM8.4 9.6a1.2 1.2 0 1 1 2.4 0v4.8a1.2 1.2 0 1 1-2.4 0V9.6Zm6-1.2a1.2 1.2 0 0 0-1.2 1.2v4.8a1.2 1.2 0 1 0 2.4 0V9.6a1.2 1.2 0 0 0-1.2-1.2Z"
@@ -374,7 +370,6 @@ const Left = ({ shouldStartMusic }) => {
               {formatTime(currentTime)}
             </p>
 
-            {/* Functional Progress Slider */}
             <div className="relative w-full h-1.5 bg-muted rounded-full cursor-pointer flex items-center group/progress">
               <input
                 type="range"

@@ -1,4 +1,4 @@
-// src\components\Header\HeaderComp\Right.jsx
+// src/components/Header/HeaderComp/Right.jsx
 import React, { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
 import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
@@ -17,7 +17,6 @@ const Right = () => {
       setTime(new Date());
     }, 1000);
 
-    // Cleanup the timer on unmount
     return () => clearInterval(timer);
   }, []);
 
@@ -36,15 +35,12 @@ const Right = () => {
   });
 
   return (
-    // Flexbox aligns the clock and toggler to the right side with a professional gap
-    <div className="h-full w-auto min-w-0 flex items-center justify-end pr-0 sm:pr-2 md:pr-4 pointer-events-auto gap-2 sm:gap-4 md:gap-6">
-      {/* Sleek Date & Time Display */}
+    <div className="h-full w-auto min-w-0 flex items-center justify-end pr-0 sm:pr-1 md:pr-3 pointer-events-auto gap-2 xl:gap-4 shrink-0">
+      {/* Sleek Date & Time Display - Shown on xl+ so tablets & compact laptops never crowd the center navbar */}
       {mounted && (
-        <div className="hidden sm:flex items-center gap-3 text-sm font-medium text-muted-foreground tracking-wide cursor-default select-none transition-colors duration-300">
+        <div className="hidden xl:flex items-center gap-2.5 text-xs 2xl:text-sm font-medium text-muted-foreground tracking-wide cursor-default select-none whitespace-nowrap transition-colors duration-300">
           <span>{formattedDate}</span>
-          {/* Subtle separator dot */}
           <span className="w-1 h-1 rounded-full bg-muted-foreground/40"></span>
-          {/* tabular-nums ensures the width doesn't jitter when seconds/minutes change */}
           <span className="tabular-nums">{formattedTime}</span>
         </div>
       )}

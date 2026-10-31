@@ -32,40 +32,40 @@ const SplashScreen = ({ onComplete }) => {
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }} // Smooth fade out when App.jsx unmounts it
       transition={{ duration: 0.8, ease: "easeInOut" }}
-      className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-transparent overflow-hidden pointer-events-auto px-4"
+      className="fixed inset-0 z-[9999] w-full h-screen h-[100dvh] max-h-[100dvh] flex flex-col items-center justify-center bg-transparent overflow-hidden pointer-events-auto px-3 sm:px-6 py-4 sm:py-6"
     >
-      {/* Wrapper ensures text stays centered and prevents overlap natively via Flexbox */}
-      <div className="relative z-10 w-full flex justify-center pointer-events-none mb-10">
+      {/* Wrapper ensures text stays centered and scales cleanly within both width and height */}
+      <div className="relative z-10 w-full max-w-[96vw] flex items-center justify-center pointer-events-none mb-4 sm:mb-6 md:mb-8 shrink">
         <motion.div
           layoutId="brand-logo"
-          className="w-full flex items-center justify-center min-h-[30vh]"
+          className="w-full flex items-center justify-center"
         >
           {/* Renders immediately so the animation is visible from frame 1 */}
           <ParaTypography
             fontFamily="'Vibur', cursive"
-            lineGap="1.2"
+            lineGap="1.12"
             strokeWidth="1px"
             lines={[
               {
                 text: "HELLO.",
-                size: "clamp(3.5rem, 9vw, 7rem)",
-                wordGap: "0.2em",
+                size: "clamp(1.65rem, min(7.5vw, 9.5dvh), 6.2rem)",
+                wordGap: "0.18em",
               },
               {
                 text: "I'M ayushmohan.",
-                size: "clamp(4.5rem, 12vw, 10rem)",
-                wordGap: "0.2em",
+                size: "clamp(1.85rem, min(8.8vw, 11.5dvh), 8.2rem)",
+                wordGap: "0.16em",
                 filledWords: ["ayushmohan."],
               },
               {
                 text: "LET'S CREATE",
-                size: "clamp(3.5rem, 9vw, 7rem)",
-                wordGap: "0.2em",
+                size: "clamp(1.6rem, min(7.5vw, 9.5dvh), 6.2rem)",
+                wordGap: "0.18em",
               },
               {
                 text: "SOMETHING EXTRAORDINARY!",
-                size: "clamp(2.2rem, 6vw, 5rem)",
-                wordGap: "0.15em",
+                size: "clamp(1.05rem, min(4.8vw, 6.2dvh), 4.2rem)",
+                wordGap: "0.12em",
                 filledWords: ["EXTRAORDINARY!"],
               },
             ]}
@@ -73,8 +73,8 @@ const SplashScreen = ({ onComplete }) => {
         </motion.div>
       </div>
 
-      {/* Enter Button container sits safely below the text, natively stacking */}
-      <div className="h-16 flex items-center justify-center">
+      {/* Enter Button container sits safely below the text with shrink-0 so it is never pushed off-screen */}
+      <div className="h-12 sm:h-14 md:h-16 shrink-0 flex items-center justify-center">
         <AnimatePresence>
           {showEnterButton && (
             <motion.button
@@ -82,7 +82,7 @@ const SplashScreen = ({ onComplete }) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
               onClick={handleEnterClick}
-              className="group relative z-20 flex items-center justify-center overflow-hidden px-8 py-3 text-foreground font-sans font-light tracking-[0.25em] uppercase text-xs md:text-sm cursor-pointer pointer-events-auto bg-transparent border-none outline-none"
+              className="group relative z-20 flex items-center justify-center overflow-hidden px-6 sm:px-8 py-2.5 sm:py-3 text-foreground font-sans font-light tracking-[0.2em] sm:tracking-[0.25em] uppercase text-[11px] sm:text-xs md:text-sm cursor-pointer pointer-events-auto bg-transparent border-none outline-none whitespace-nowrap"
             >
               {/* Invisible placeholder to maintain the button's exact width during absolute transitions */}
               <span className="invisible flex items-center justify-center">
@@ -100,7 +100,7 @@ const SplashScreen = ({ onComplete }) => {
               <span className="absolute inset-0 flex items-center justify-center translate-y-full opacity-0 transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:translate-y-0 group-hover:opacity-100">
                 <ArrowRightCircle
                   strokeWidth={1}
-                  className="w-8 h-8 md:w-10 md:h-10 text-foreground"
+                  className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 text-foreground"
                 />
               </span>
             </motion.button>

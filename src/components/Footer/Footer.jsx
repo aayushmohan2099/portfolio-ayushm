@@ -1,4 +1,4 @@
-// src\components\Footer\Footer.jsx
+// src/components/Footer/Footer.jsx
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight, ArrowUp } from "lucide-react";
@@ -62,7 +62,7 @@ const containerVariants = {
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 28, filter: "blur(8px)" },
+  hidden: { opacity: 0, y: 24, filter: "blur(8px)" },
   visible: {
     opacity: 1,
     y: 0,
@@ -87,10 +87,18 @@ const Footer = () => {
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+    document.documentElement?.scrollTo?.({ top: 0, behavior: "smooth" });
+    document.body?.scrollTo?.({ top: 0, behavior: "smooth" });
   };
 
   return (
-    <footer className="relative w-full bg-background text-foreground font-sans overflow-hidden pt-20 sm:pt-28 pb-12 px-4 sm:px-6 lg:px-8 select-none touch-auto z-20">
+    <footer
+      style={{
+        touchAction: "pan-y",
+        overflowAnchor: "none",
+      }}
+      className="relative w-full bg-background text-foreground font-sans overflow-x-clip pt-20 sm:pt-28 pb-12 px-4 sm:px-6 lg:px-8 select-none touch-pan-y z-20"
+    >
       {/* Subtle Ambient Corner Glow matching the reference image[cite: 5] */}
       <div className="pointer-events-none absolute top-1/4 -right-32 w-[420px] h-[420px] rounded-full bg-foreground/[0.04] dark:bg-white/[0.04] blur-3xl" />
 
@@ -98,15 +106,15 @@ const Footer = () => {
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: false, margin: "-80px" }}
+        viewport={{ once: true, margin: "-40px" }}
         className="max-w-6xl mx-auto flex flex-col items-center"
       >
-        {/* --- TOP HERO: "Let's" + Looping Words ("Connect!", "Collaborate!", etc.)[cite: 5] --- */}
+        {/* --- TOP HERO: Looping Words ("Let's Connect!", "Let's Collaborate!", etc.)[cite: 5] --- */}
+        {/* pointer-events-none ensures vertical touch swipes over the moving words never get trapped */}
         <motion.div
           variants={itemVariants}
-          className="w-full flex flex-col items-center justify-center text-center mb-14 sm:mb-20"
+          className="w-full flex flex-col items-center justify-center text-center mb-14 sm:mb-20 pointer-events-none"
         >
-          {/* Index 1 ("Connect!") sits in the active center bracket first, followed by "Collaborate!" */}
           <LoopingWords
             words={[
               "Let's Create!",
@@ -122,9 +130,9 @@ const Footer = () => {
         <motion.div
           initial={{ scaleX: 0, opacity: 0 }}
           whileInView={{ scaleX: 1, opacity: 1 }}
-          viewport={{ once: false, margin: "-60px" }}
+          viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          className="w-full h-[1px] bg-border origin-center mb-12 sm:mb-16"
+          className="w-full h-[1px] bg-border origin-center mb-12 sm:mb-16 pointer-events-none"
         />
 
         {/* --- MIDDLE 3-COLUMN NAVIGATION & CONTACT GRID[cite: 5] --- */}
@@ -143,7 +151,7 @@ const Footer = () => {
                   <button
                     type="button"
                     onClick={() => handleRouteClick(item)}
-                    className="text-sm sm:text-base font-normal text-foreground/85 hover:text-blue-400 transition-colors duration-200 cursor-pointer"
+                    className="text-sm sm:text-base font-normal text-foreground/85 hover:text-blue-400 transition-colors duration-200 cursor-pointer touch-manipulation"
                   >
                     {item.label}
                   </button>
@@ -167,7 +175,7 @@ const Footer = () => {
                     href={link.href}
                     target={link.external ? "_blank" : undefined}
                     rel={link.external ? "noopener noreferrer" : undefined}
-                    className="group inline-flex items-center gap-1 text-sm sm:text-base font-normal text-foreground/85 hover:text-blue-400 transition-colors duration-200"
+                    className="group inline-flex items-center gap-1 text-sm sm:text-base font-normal text-foreground/85 hover:text-blue-400 transition-colors duration-200 touch-manipulation"
                   >
                     <span>{link.label}</span>
                     {link.external && (
@@ -190,7 +198,7 @@ const Footer = () => {
 
             <a
               href="mailto:ayush.msrivastava@gmail.com"
-              className="text-lg sm:text-2xl md:text-[1.75rem] font-bold tracking-tight text-foreground hover:text-blue-400 transition-colors duration-300 break-all sm:break-normal w-fit"
+              className="text-lg sm:text-2xl md:text-[1.75rem] font-bold tracking-tight text-foreground hover:text-blue-400 transition-colors duration-300 break-all sm:break-normal w-fit touch-manipulation"
             >
               ayush.msrivastava@gmail.com
             </a>
@@ -212,9 +220,9 @@ const Footer = () => {
         <motion.div
           initial={{ scaleX: 0, opacity: 0 }}
           whileInView={{ scaleX: 1, opacity: 1 }}
-          viewport={{ once: false, margin: "-20px" }}
+          viewport={{ once: true, margin: "-20px" }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          className="w-full h-[1px] bg-border origin-center mb-6"
+          className="w-full h-[1px] bg-border origin-center mb-6 pointer-events-none"
         />
 
         {/* --- BOTTOM COPYRIGHT & BACK TO TOP BAR[cite: 5] --- */}
@@ -229,7 +237,7 @@ const Footer = () => {
           <button
             type="button"
             onClick={scrollToTop}
-            className="group inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground hover:text-foreground transition-colors duration-200 cursor-pointer"
+            className="group inline-flex items-center gap-1.5 py-2 px-3 rounded-lg font-mono text-[11px] uppercase tracking-[0.2em] text-muted-foreground hover:text-foreground transition-colors duration-200 cursor-pointer touch-manipulation"
           >
             <span>Back to top</span>
             <ArrowUp className="w-3.5 h-3.5 transition-transform duration-300 group-hover:-translate-y-1" />
